@@ -12,7 +12,8 @@ composer.lock
 /user_uploads
 /sitemap
 /app/storage
-/app/config/database.php
+/app/config
+/app/database
 /m
 .gz
 .tar.gz
