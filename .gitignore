@@ -4,7 +4,6 @@
 /api
 /app/config
 /app/storage
-/app/testconfig
 composer.phar
 composer.lock
 .DS_Store
