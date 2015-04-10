@@ -3,15 +3,15 @@
 .env
 /api
 /app/config
-/vendor
+/app/storage
 composer.phar
 composer.lock
 .DS_Store
 /public/user_uploads
 /public
+/vendor
 /user_uploads
 /sitemap
-/app/storage
 /m
 .gz
 .tar.gz
