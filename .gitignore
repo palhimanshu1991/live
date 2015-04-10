@@ -2,7 +2,6 @@
 .env.php
 .env
 /api
-/app/config
 /app/storage
 /app/testconfig
 composer.phar
@@ -17,5 +16,3 @@ composer.lock
 .gz
 .tar.gz
 .sql
-
-app/config/database.php
