@@ -17,4 +17,3 @@ composer.lock
 .tar.gz
 .sql
 
-app/config/database.php
