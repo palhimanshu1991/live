@@ -8,13 +8,14 @@
         <link rel="stylesheet" type="text/css" href="{{Config::get('url.home')}}public/bootstrap/css/bootstrap.min2.css">
         <link rel="stylesheet" type="text/css" href="{{Config::get('url.home')}}public/bootstrap/css/docs.css">
         <link rel="icon" href="{{ Config::get('url.home')}}public/favicon.png" sizes="32x32">
+        <link href='http://fonts.googleapis.com/css?family=Oxygen:700,400,300' rel='stylesheet' type='text/css'>
 
         <style>
-            @import url(//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
 
             body {
-                font-family:'Open Sans', sans-serif;
+                font-family:'Oxygen', sans-serif;
                 text-shadow: none;
+                background: #eee !important;
             }
 
 
@@ -29,10 +30,10 @@
             }
         </style>
 
-        @if(Config::get('url.home')=='http://localhost/lara1.1/')
+        @if(Config::get('url.home')=='http://localhost/live/')
         <script type="text/javascript">
             FB_APP_ID = "292311107459306";
-            HOST = "http://localhost/lara1.1/";
+            HOST = "http://localhost/live/";
         </script>
         @else 
         <script type="text/javascript">

@@ -1,151 +1,48 @@
-@extends('master')
+@extends('master_blank')
 
 @section('meta')
 <title>Berdict - short movie reviews from your friends and critics.</title>
-<meta name="title" content="Berdict - short movie reviews from your friends and critics.">
+<meta name="title" content="Berdict - Short movie reviews from your friends and critics.">
 <meta name="description" content="Berdict shows you short movie reviews of 400 characters from you friends and critics.">
-<meta name="keywords" content="movies,films,film reviews,critic reviews,movie reviews,berdict,berdict.com">
+<meta name="keywords" content="movies, films, film reviews, critic reviews, movie reviews, berdict,berdict.com">
 <meta name="image" content="{{Config::get('url.home')}}public/berdict/img/main_index.png"/>
 <meta property='og:image' content="{{Config::get('url.home')}}public/berdict/img/main_index.png" />
 @stop
 
 
 @section('container')
-
-<style>
-    .bs-docs-nav {
-        text-shadow: none;
-        background-color: #FFF;
-        border-color: #DDD;
-        box-shadow: none;
-    }
-    .navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus {
-        color: #fff;
-        background-color: transparent;
-    }
-    bs-docs-nav .navbar-nav > li > a:hover {
-        color: #333;
-        background-color: #efefef;
-    }
-    .bs-docs-nav .navbar-nav > li > a:hover {
-        color: #333;
-        background-color: #efefef;
-    }
-	.bs-footer {
-		margin-top: 0px;
-	}
-    .form-control {
-        display: block;
-        width: 100%;
-        height: 46px;
-        padding: 6px 12px;
-        font-size: 14px;
-        font-family: 'Open Sans';
-        line-height: 1.428571429;
-        color: #555;
-        vertical-align: middle;
-        background-color: #fff;
-        background-image: none;
-        border: 1px solid #ccc;
-        border-radius: 0px;
-    }
-	.dark-img{
-		-webkit-transition: all 0.2s linear;
-		-moz-transition: all 0.2s linear;
-		-ms-transition: all 0.2s linear;
-		-o-transition: all 0.2s linear;
-		transition: all 0.2s linear;
-		opacity: 0.4;	
-	}
-	.dark-img:hover {
-		opacity: 1;	
-	}	
-</style>
-
-
-
-<?php $random = DB::table('film')->take('24')->orderBy('fl_release_date', 'desc')->get(); ?>
-<div style="background:#ddd;height:332px;width:100%;">
-	<div class="col-md-12 pad0" style="font-weight: 600;font-size: 30px;padding-top: 0px;width:99.9%;">
-	
-	<?php $i = 0; ?>
-	@foreach($random as $random)
-	<?php $i++; ?>
-	<?php if($i<13) {$placement ='bottom';} elseif($i>12) {$placement ='top';} ?>
-	<a href="{{Config::get('url.home')}}movie/{{$random->fl_id}}/{{Common::cleanUrl($random->fl_name)}}">
-		<div style="background:#000;" class="col-md-1 pad0" rel="popover" data-original-title="{{$random->fl_name}} ({{$random->fl_year}})" data-container="body" data-toggle="popover" data-placement="{{$placement}}" data-trigger="hover" data-content="{{$random->fl_outline}}" title="">
-			<img class="lazy img-responsive dark-img" src="{{Config::get('url.home')}}public/berdict/img/default_poster.jpg" data-original="{{Config::get('url.web')}}public/uploads/movie/{{$random->fl_year}}/{{$random->fl_image}}" alt="" style="display: inline;height:166px;width:112px;">
-		</div>
-	</a>
-	@endforeach
-
-	</div>
+<div class="" style="">
+    <div class="container wrapper" style="min-height: 650px;">
+        <div class="col-l-16 pbot ptop2">   
+            <div class="col-l-16 mtop2 mbot2" style="padding: 0px;text-align: center;">
+                <h1>Become A Movie Critic</h1>
+                <div class="mtop mbot" style="font-weight: 500;font-size: 18px;color: rgba(0,0,0,0.7);">
+                    Berdict is the best new place for movie lovers <!--<span class="heart"></span>-->. <br>
+                    Share your opinion on movies in 400 characters and <br>save the world from bad movies one at a time.
+                </div>  
+                <div id="buttons-container" class="col-l-16 ta-center mtop mbot2" style="
+    margin-top: 40px;
+">
+                   <a class="btn btn-big " onclick="SignUp()" href="#" style="margin-right: 2%;background: #3b5998 !important;color: #fff !important;border: 1px solid #3b5998;   font-weight: 300;      padding: 18px 40px;   border-radius: 50px;min-width: 240px;   font-family: &quot;Oxygen&quot;,&quot;Helvetica Neue&quot;,Helvetica,Calibri,sans-serif;   text-transform: uppercase;   font-size: 15px;letter-spacing: 0.06em;">SignUp With Facebook</a>
+    
+<a class="btn btn-big " data-toggle="modal" data-target="#signupModal" href="" style="
+    margin-right: 1%;   
+    background: transparent !important;   
+    color: #777 !important;   
+    border: 1px solid #ccc;   
+    font-weight: 400;   padding: 18px 40px;   border-radius: 2px;   min-width: 240px;   font-family: &quot;Oxygen&quot;,&quot;Helvetica Neue&quot;,Helvetica,Calibri,sans-serif;   text-transform: uppercase;   
+    font-size: 15px;   
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid #ccc !important;display:none;
+">SignUp With Email</a>            
+                </div>          
+            </div>  
+            <div class="col-l-16 ptop0 mbot2" style="text-align: center;padding-top:60px;">
+                <img class="mark" width="116" src="public/berdict/img/landing.png" style="width: 409px;text-align: center;">
+            </div>          
+        </div>
+    </div>
 </div>
-
-<div  style="background:#fff;height:300px;">
-	<div class="container"   style="text-align:center;">
-		<div class="col-md-8 col-md-offset-2" style="font-weight: 600;font-size: 26px;padding-top: 20px;margin-bottom:30px;">
-			Berdict is the easiest way to read movie reviews from your friends and critics.
-		</div>
-		<div class="col-md-12 pad0" style="font-weight: 600;font-size: 24px;padding-top: 20px;">
-		<div class="col-md-4 pad0" style="background:#e74c3c;height:150px;color:#fff;padding-top:10px;">
-		<div>FAST</div>
-		<div style="font-size:16px;padding:10px 10px;">Short movie reviews of 400 characters, which helps you to read more opinions in less time</div>
-		</div>
-		<div class="col-md-4 pad0" style="background:#e67e22;height:150px;color:#fff;padding-top:10px;">
-		<div>SOCIAL</div>
-		<div style="font-size:16px;padding:10px 10px;">Read the opinion of your friends, see their favourite movies, their ratings and much more</div>		
-		</div>
-		<div class="col-md-4 pad0" style="background:#f39c12;height:150px;color:#fff;padding-top:10px;">
-		<div>FUN</div>
-		<div style="font-size:16px;padding:10px 10px;">Expressive ratings, showcase your favourites, discover new movies and much more... </div>		
-		</div>	
-		</div>		
-	</div>
-</div>
-
-
-
-<div class="container"  style="">
-    <!-- Modal -->
-    <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content col-md-9">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Login</h4>
-                </div>
-                <div class="modal-body">
-                    <form action="{{Config::get('url.home')}}login" method="POST" class="ajax">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                {{ Form::text('username', '', array('class' => 'form-control' , 'id' => 'username', 'placeholder' => 'username or email')) }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                                {{ Form::password('password', array('class' => 'form-control' , 'id' => 'password', 'placeholder' => 'password')) }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group" style="font-size:13px;">
-                                <input type="checkbox" id="remember" value="remember" name="remember" checked="checked"></input>
-                                Keep me logged in
-                            </div>
-                        </div>
-
-                        {{ Form::submit('Login', array('class' => 'btn btn-primary btn-lg btn-block', 'id' => 'review_submit')) }}
-
-                        {{ Form::close() }} 
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-</div>
-
-
 
 
 
