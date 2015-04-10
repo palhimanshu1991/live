@@ -85,7 +85,7 @@
 <div  style="background:#fff;height:300px;">
 	<div class="container"   style="text-align:center;">
 		<div class="col-md-8 col-md-offset-2" style="font-weight: 600;font-size: 26px;padding-top: 20px;margin-bottom:30px;">
-			Berdict is the easiest way to read movie reviews from your friends and critics.
+			Berdict is the easiest way to read movie reviews from your friends and critics....
 		</div>
 		<div class="col-md-12 pad0" style="font-weight: 600;font-size: 24px;padding-top: 20px;">
 		<div class="col-md-4 pad0" style="background:#e74c3c;height:150px;color:#fff;padding-top:10px;">
