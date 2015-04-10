@@ -2,7 +2,6 @@
 .env.php
 .env
 /api
-/app/config
 /app/database
 /vendor
 composer.phar
@@ -13,7 +12,6 @@ composer.lock
 /user_uploads
 /sitemap
 /app/storage
-/app/config
 /m
 .gz
 .tar.gz
