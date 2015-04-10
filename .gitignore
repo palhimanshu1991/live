@@ -1,4 +1,3 @@
-/bootstrap/compiled.php
 .env.*.php
 .env.php
 .env
@@ -12,8 +11,6 @@ composer.lock
 /user_uploads
 /sitemap
 /app/storage
-/app/config
-/app/database
 /m
 .gz
 .tar.gz
