@@ -2,6 +2,8 @@
 .env.php
 .env
 /api
+/app/config
+/app/database
 /vendor
 composer.phar
 composer.lock
