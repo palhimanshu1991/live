@@ -23,9 +23,9 @@
                 <div id="buttons-container" class="col-l-16 ta-center mtop mbot2" style="
     margin-top: 40px;
 ">
-                   <a class="btn btn-big " onclick="SignUp()" href="#" style="margin-right: 2%;background: #3b5998 !important;color: #fff !important;border: 1px solid #3b5998;   font-weight: 300;      padding: 18px 40px;   border-radius: 50px;min-width: 240px;   font-family: &quot;Oxygen&quot;,&quot;Helvetica Neue&quot;,Helvetica,Calibri,sans-serif;   text-transform: uppercase;   font-size: 15px;letter-spacing: 0.06em;">SignUp With Facebook</a>
+                   <a class="btn btn-big  facebook" onclick="SignUp()" href="#" style="margin-right: 2%;background: #3b5998 !important;color: #fff !important;border: 1px solid #3b5998;   font-weight: 300;      padding: 18px 40px;   border-radius: 50px;min-width: 240px;   font-family: &quot;Oxygen&quot;,&quot;Helvetica Neue&quot;,Helvetica,Calibri,sans-serif;   text-transform: uppercase;   font-size: 15px;letter-spacing: 0.06em;">SignUp With Facebook</a>
     
-<a class="btn btn-big " data-toggle="modal" data-target="#myModal" href="" style="
+<a class="btn btn-big login" data-toggle="modal" data-target="#myModal" href="" style="
     margin-right: 1%;   
     background: #fff !important;   
     color: #777 !important;   
@@ -88,9 +88,18 @@
 
 
 
+
 @stop
 
 @section('extra')
-
+<script type="text/javascript">
+    mixpanel.track("landing-page");
+    $(".facebook").click(function() {
+        mixpanel.track("btn-facebook-signup");
+    });
+    $(".login").click(function() {
+        mixpanel.track("btn-login");
+    });    
+</script>
 
 @stop
