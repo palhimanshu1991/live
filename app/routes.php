@@ -1,5 +1,5 @@
 <?php
-
+//Just
 //include_once 'views/header.php';
 Route::post('upload', function (){
 	if (Input::hasFile('image')) {
