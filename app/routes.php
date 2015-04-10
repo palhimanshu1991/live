@@ -25,6 +25,8 @@ Route::post('upload', function (){
 Route::get('getting-started', 'HomeController@Starting');
 Route::get('top', 'HomeController@top');
 
+Route::get('admin', 'AdminController@admin');
+
 Route::get('suggestions', 'MoviesController@suggest');
 Route::post('suggestions', 'MoviesController@suggestions');
 
