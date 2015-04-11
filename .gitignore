@@ -9,7 +9,15 @@ composer.phar
 composer.lock
 .DS_Store
 /public/user_uploads
-/public
+/public/uploads
+/public/assets
+/public/berdict/img
+/public/bootstrap/img
+/public/bootstrap/mobile
+/public/img
+/public/facebook
+/public/crop
+/public/mobile
 /vendor
 /user_uploads
 /sitemap
@@ -17,4 +25,6 @@ composer.lock
 .gz
 .tar.gz
 .sql
+.DB
+Thumbs.db
 app/config/database.php

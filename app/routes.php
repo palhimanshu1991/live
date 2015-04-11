@@ -303,7 +303,7 @@ Route::post('/facebook/checkUsername', 'FacebookController@checkUsername');
 Route::post('/facebook/checkEmail', 'FacebookController@checkEmail');
 
 
-Route::get('/facebook/friends', 'FacebookController@friends')->before('auth');
+Route::get('/welcome', 'FacebookController@friends')->before('auth');
 Route::resource('facebook', 'FacebookController');
 
 

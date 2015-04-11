@@ -29,6 +29,7 @@ class FacebookController extends BaseController {
             return 'false';
         } else {
             // user does not exist signup
+            // Make a call to create the  user & log him in 
             return 'true';
         }
     }
@@ -71,6 +72,15 @@ class FacebookController extends BaseController {
         $username = Input::get('username');
         $pass = Hash::make(Input::get('pass'));
 
+        $check = User::where('oauth_id', $uid)->first();
+
+        if ($check) {
+            // user exit login return false
+            $user = User::find($check->id);
+            Auth::login($user);
+
+            return 'false';
+        } 
 
         if ($fb_gender == 'male') {
             $gender = 'm';
@@ -93,7 +103,7 @@ class FacebookController extends BaseController {
         $user->usr_lname = $lname;
         $user->username = $username;
         $user->usr_email = $email;
-        $user->password = $pass;
+        $user->password = $this->generateRandomString();
         $user->usr_gender = $gender;
         $user->usr_fb_link = $link;
 		$user->berdict_key = $this->generateRandomString();		
@@ -112,11 +122,14 @@ class FacebookController extends BaseController {
         $user = User::find($insertedId);
         Auth::login($user);
 
+
+        
         //creating a directory for the user with blank index.php
         $id = $insertedId;
 
-		$invite = New InviteController;
-		$invite->createCodes($insertedId);		
+
+		//$invite = New InviteController;
+		//$invite->createCodes($insertedId);		
 		
         $index = ('public/user_uploads/1000/' . $id . '/index.php');
 
@@ -178,7 +191,7 @@ class FacebookController extends BaseController {
 		}
 		
 		$this->followAll();			
-
+        
 		
     }
 

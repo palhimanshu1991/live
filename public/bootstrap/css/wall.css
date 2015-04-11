@@ -1,0 +1,180 @@
+
+
+#wall_container
+{
+text-align:left;
+background-color: #e3e3e3;
+width: 100;
+padding: 10px;
+margin: 20px 0px;
+}
+#update
+{
+font-size:13px;
+height: 80px;
+width: 638px;
+max-height: 80px;
+}
+#content
+{
+margin-top:10px;
+}
+#updateboxarea
+{
+padding: 0px 5px;
+}
+
+/*
+.update_button {
+text-shadow: none;
+border-radius: 0px;
+-moz-border-radius: 0px;
+-webkit-border-radius: 0px;
+text-transform: uppercase;
+font-weight: bold;
+line-height: 40px;
+height: 40px;
+padding: 0 10px;
+background-color: #F73F11;
+color: #fff;
+border: none;
+cursor: pointer;
+transition: 0.15s ease-out background-color;
+-moz-transition: 0.15s ease-out background-color;
+-webkit-transition: 0.15s ease-out background-color;
+-o-transition: 0.15s ease-out background-color;
+}
+
+.update_button:hover {
+background-color: #C94218;
+}
+/* status body */
+
+.stbody
+{
+
+margin:15px 0px;
+border-bottom:solid 1px #dedede;
+overflow:auto;
+}
+.stimg
+{
+float:left;
+height:50px;
+width:50px;
+border:solid 1px #dedede;
+}
+.sttext
+{
+margin-left: 55px;
+min-height: 53px;
+word-wrap: break-word;
+overflow: hidden;
+padding: 0px 5px;
+display: block;
+font-size: 13px;
+width: 560px;
+}
+
+
+.sttime
+{
+font-size:11px;
+color:#999;
+font-family:Arial, Helvetica, sans-serif;
+margin-top:5px;
+}
+.stdelete 
+{
+font-weight:bold;
+cursor:pointer;
+}
+#stexpandbox
+{
+margin-top:10px;
+}
+#stexpandbox img
+{
+border:solid 1px #dedede;
+padding:3px;
+}
+/* Comment */
+.stcommentbody
+{
+
+
+border-bottom:solid 1px #fff;
+background-color:#f2f2f2;
+padding:5px;
+width:400px;
+overflow:auto;
+}
+.stcommentimg
+{
+float:left;
+height:35px;
+width:35px;
+border:solid 1px #dedede;
+padding:2px;
+}
+.stcommenttext
+{
+margin-left:45px;
+min-height:40px;
+word-wrap:break-word;
+overflow:hidden;
+padding:3px;
+display:block;
+font-size:11px;
+width:350px;
+
+}
+.stcommenttext b
+{
+color:#006699;
+}
+
+.stcommenttime
+{
+font-size:11px;
+color:#999;
+font-family:Arial, Helvetica, sans-serif;
+margin-top:5px;
+}
+.stcommentdelete 
+{
+font-weight:bold;
+float:right;
+cursor:pointer;
+}
+.commentupdate
+{
+background-color:#f2f2f2;
+width:400px;
+padding:5px;
+}
+.comment
+{
+width:330px;
+height:35px;
+font-size:11px;
+}
+/* faceb image*/
+.small_face
+{
+width:45px;
+height:45px
+}
+.big_face
+{
+width:50px;
+height:50px
+}
+#flashmessage
+{
+height:15px;
+margin-top:10px;
+font-size:11px;
+color:#333;
+
+}
