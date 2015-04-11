@@ -5,7 +5,8 @@
 @section('container')
 
 <div class="container wrapper">    
-<h1>Users: {{$userCount}}</h1>
+<h1>Users: <b>{{$userCount}}</b></h1>
+<h1>Reviews: <b>{{$reviewCount}}</b></h1>
 
 <div class="bs-example" data-example-id="striped-table">
         <div class="search-pagination-top bb" style="margin-top:10px;">

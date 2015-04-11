@@ -304,6 +304,10 @@ Route::post('/facebook/checkEmail', 'FacebookController@checkEmail');
 
 
 Route::get('/welcome', 'FacebookController@friends')->before('auth');
+
+Route::get('/step1', 'WelcomeController@step1')->before('auth');
+Route::get('/step2', 'WelcomeController@step2')->before('auth');
+
 Route::resource('facebook', 'FacebookController');
 
 

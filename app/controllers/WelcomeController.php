@@ -1,15 +1,14 @@
 <?php
 
-class AdminController extends BaseController {
+class WelcomeController extends BaseController {
 
 
     protected $layout = 'master';
 
 
     // retunrs the number of unread notifications
-    public function admin() {
+    public function step1() {
 
-        if (Auth::user()->usr_level == 2) {
             // gets the user details fro username
             $users = DB::table('users')
                     ->orderBy('id','desc')
@@ -19,9 +18,7 @@ class AdminController extends BaseController {
             $reviewCount = DB::table('film_review')->count();
 
             $this->layout->content = View::make('admin.index', compact('users','userCount','reviewCount'));
-        } else {
-            return Redirect::to(Config::get('url.home'));
-        }        
+
     
     }
 
