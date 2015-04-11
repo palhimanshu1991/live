@@ -503,10 +503,6 @@
         </script>
 
 
-
-        @yield('extra')
-
-
         <script type="text/javascript">
 		
             $(document).ready(function() {
@@ -580,16 +576,19 @@
 
         @if(Auth::check())
         <script type="text/javascript">
+            mixpanel.identify({{Auth::user()->id}});
             mixpanel.people.set({
-                "FirstName": "{{Auth::user()->usr_fname}}",                    // feel free to define your own properties                
+                "$name": "{{Auth::user()->usr_fname}}",                    // feel free to define your own properties                
                 "$email": "{{Auth::user()->usr_email}}",    // only special properties need the $
-                "$last_seen": new Date(),         // properties can be dates...
+                "$last_seen": new Date()         // properties can be dates...
             });
         </script>
         @endif
-
         @endif
-        <!================================================== -->
+
+        
+
+        @yield('extra')
 
 
     </body>

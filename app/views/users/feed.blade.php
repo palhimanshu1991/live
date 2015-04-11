@@ -314,7 +314,7 @@
 
         </div>
     </div>
-    <!-- Right box ends --->
+    <!-- Right box ends ---->
 </div>
 
 @stop
@@ -322,4 +322,10 @@
 @section('extra')
 <script src="{{Config::get('url.home')}}public/bootstrap/js/jquery.jcarousel.min.js"></script>
 <script src="{{Config::get('url.home')}}public/bootstrap/js/jcarousel.skeleton.js"></script>
+
+<script type="text/javascript">
+    mixpanel.track("feed-page");  
+</script>
+
 @stop
+
