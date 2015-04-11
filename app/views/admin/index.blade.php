@@ -16,7 +16,7 @@
         <tr>
           <th>#</th>
           <th>Name</th>
-          <th>UserName</th>
+          <th>Email</th>
           <th>Reviews</th>
           <th>Watched</th>
           <th>Watchlist</th>
@@ -35,8 +35,8 @@
         ?>
         <tr>
           <th scope="row">{{$user->id}}</th>
-          <td>{{$user->usr_fname.' '.$user->usr_lname}}</td>
-          <td><a href="http://www.berdict.com/{{$user->username}}">{{$user->username}}</a></td>
+          <td><a target="_blank" href="http://www.berdict.com/{{$user->username}}">{{$user->usr_fname.' '.$user->usr_lname}}</a></td>
+          <td><a href="mailTo:{{$user->usr_email}}">{{$user->usr_email}}</a></td>
           <td>{{$reviews}}</td>
           <td>{{$watched}}</td>
           <td>{{$watchlist}}</td>
