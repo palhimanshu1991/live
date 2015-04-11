@@ -535,39 +535,44 @@ class ReviewsController extends BaseController {
 
         foreach ($followers as $subject) {
 
-            //The follower to whom this email will be sent
-            $user = User::where('id', $subject->id)->first();
+            // if the subject is 1 or greater than 200 to avoid spam mail
+            if($subject->id=1 || $subject->id>200) {
 
-            if ($movie->fl_image) {
-                $filmImage = 'http://www.berdict.com/public/uploads/movie/' . $movie->fl_year . '/' . $movie->fl_image;
-            } else {
-                $filmImage = 'http://www.berdict.com/public/berdict/img/default_poster.jpg';
+                //The follower to whom this email will be sent
+                $user = User::where('id', $subject->id)->first();
+
+                if ($movie->fl_image) {
+                    $filmImage = 'http://www.berdict.com/public/uploads/movie/' . $movie->fl_year . '/' . $movie->fl_image;
+                } else {
+                    $filmImage = 'http://www.berdict.com/public/berdict/img/default_poster.jpg';
+                }
+                $filmUrl = 'http://www.berdict.com/movie/' . $movie->fl_id . '/' . Common::cleanUrl($movie->fl_name);
+
+                $subjectEmail = $user->usr_email;
+                $subjectName = $user->usr_fname . ' ' . $user->usr_lname;
+                $emailSubject = 'Hey ' . $user->usr_fname . '! Your friend ' . Auth::user()->usr_fname . ' ' . Auth::user()->usr_lname . ' wrote a review for ' . $movie->fl_name;
+
+                $data = array(
+                    'subjectName' => $user->usr_fname,
+                    'filmName' => $movie->fl_name,
+                    'filmYear' => $movie->fl_year,
+                    'filmUrl' => $filmUrl,
+                    'filmImage' => $filmImage,
+                    'filmReview' => $review->fr_review,
+                    'reviewId' => $review->fr_id,
+                    'objectId' => Auth::user()->id,
+                    'objectName' => Auth::user()->usr_fname . ' ' . Auth::user()->usr_lname,
+                    'objectUsername' => Auth::user()->username,
+                    'filmName' => $movie->fl_name
+                );
+
+                Mail::send('emails.newReview', $data, function($message) use ($subjectEmail, $subjectName, $emailSubject) {
+                    $message->to($subjectEmail, $subjectName);
+                    $message->subject($emailSubject);
+                    $message->from('no-reply@berdict.com', 'Berdict');
+                });
+
             }
-            $filmUrl = 'http://www.berdict.com/movie/' . $movie->fl_id . '/' . Common::cleanUrl($movie->fl_name);
-
-            $subjectEmail = $user->usr_email;
-            $subjectName = $user->usr_fname . ' ' . $user->usr_lname;
-            $emailSubject = 'Hey ' . $user->usr_fname . '! Your friend ' . Auth::user()->usr_fname . ' ' . Auth::user()->usr_lname . ' wrote a review for ' . $movie->fl_name;
-
-            $data = array(
-                'subjectName' => $user->usr_fname,
-                'filmName' => $movie->fl_name,
-                'filmYear' => $movie->fl_year,
-                'filmUrl' => $filmUrl,
-                'filmImage' => $filmImage,
-                'filmReview' => $review->fr_review,
-                'reviewId' => $review->fr_id,
-                'objectId' => Auth::user()->id,
-                'objectName' => Auth::user()->usr_fname . ' ' . Auth::user()->usr_lname,
-                'objectUsername' => Auth::user()->username,
-                'filmName' => $movie->fl_name
-            );
-
-            Mail::send('emails.newReview', $data, function($message) use ($subjectEmail, $subjectName, $emailSubject) {
-                $message->to($subjectEmail, $subjectName);
-                $message->subject($emailSubject);
-                $message->from('no-reply@berdict.com', 'Berdict');
-            });
         }
     }    
 }
