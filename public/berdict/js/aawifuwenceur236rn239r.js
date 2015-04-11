@@ -286,7 +286,7 @@ function SignUp()
             console.log('User cancelled login or did not fully authorize.');
 			Alert('Please authorise to sign up.');
         }
-    }, {scope: 'email,publish_stream,publish_actions,user_friends'});
+    }, {scope: 'email,user_friends'});
 
 }
 
