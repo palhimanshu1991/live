@@ -536,7 +536,7 @@ class ReviewsController extends BaseController {
         foreach ($followers as $subject) {
 
             // if the subject is 1 or greater than 200 to avoid spam mail
-            if($subject->id=1 || $subject->id>200) {
+            if($subject->id>200 || $subject->id==1) {
 
                 //The follower to whom this email will be sent
                 $user = User::where('id', $subject->id)->first();
