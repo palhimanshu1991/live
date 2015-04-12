@@ -40,7 +40,7 @@
                 </div>          
             </div>  
             <div class="col-md-12" style="text-align: center;padding-top:40px;color:#888;">
-                <a class="email-signup" href="{{Config::get('url.home')}}signup">Sign Up With Email.</a> By signing up you indicate <br/>that you have read and agree to the Terms of Service.
+                <a class="email-signup" style="color:#000;" href="{{Config::get('url.home')}}signup">Sign Up With Email.</a> By signing up you indicate <br/>that you have read and agree to the Terms of Service.
             </div>
             <div class="col-md-12 ptop0 mbot2" style="text-align: center;padding-top:30px;">
                 <img class="mark" width="116" src="public/berdict/img/landing.png" style="width: 409px;text-align: center;">
