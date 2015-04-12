@@ -78,7 +78,9 @@
 
         <div class="row">
         @foreach($reviews as $review)
-        <?php DB::table('film_review')->where('fr_id',$review->fr_id)->increment('fr_views'); ?>    
+        <?php 
+        $random = rand(5,20);
+        DB::table('film_review')->where('fr_id',$review->fr_id)->increment('fr_views',$random); ?>    
             <div class="col-md-12">
                 <div class="col-md-9 row-fluid pad0" style="" id="data-review-{{$review->fr_id}}">
                     <div class="res-review-header col-md-12 pad0" style="height: 60px;">            
@@ -105,13 +107,16 @@
                        </div>
                     </div>
                     <div class="res-review-actions" style="font-size: 13px;margin: 20px 0px 15px;letter-spacing: -0.02em;   font-weight: 400;   font-style: normal;color: rgba(0,0,0,0.45);white-space: nowrap;   text-overflow: ellipsis;">
-                       <span data-toggle="modal" data-target="#myModal" class="review-like" id="review-unlike-4418" data-id="4418" title="" style="  border: 1px solid #ddd;padding: 6px 30px;border-radius: 3px;font-size: 14px;font-weight: 600;"> Like</span>
-                       <span href="" data-toggle="modal" data-target="#people" class="" rel="tooltip" data-placement="left" title="" data-original-title="People who Like" style="margin-left:15px;float: right;color:#666;font-size: 1.6em;line-height: 0.6;"> 2 <font style="font-size: 13px;font-weight: 400;">  Likes   </font></span>                              
+                       <span data-toggle="modal" data-target="#myModal" class="review-like" id="review-unlike-4418" data-id="4418" title="" style="  border: 1px solid #ddd;padding: 6px 30px;border-radius: 3px;font-size: 14px;font-weight: 600;"> Like</span>                        
                        <span href="" data-toggle="modal" data-target="#people" class="" rel="tooltip" data-placement="left" title="" data-original-title="People who Like" style="margin-left:15px;float: right;color:#666;font-size: 1.6em;line-height: 0.6;"> {{$review->fr_views}}  <font style="font-size: 13px;font-weight: 400;"> Views </font></span>
                     </div>
                     <div class="res-review-user col-md-12 pad0" style="height: 50px;margin-top:25px;">
                        <a class="left" href="{{Config::get('url.home')}}{{$review->username}}">
-                          <img class="lazy img-responsive " src="{{Config::get('url.home')}}public/berdict/img/avatar_50.png" data-original="{{Config::get('url.web')}}public/user_uploads/1000/{{$review->id}}/{{$review->usr_image}}" alt="" style="height:36px;width: 36px; display: inline;border-radius:50px;">
+                        @if($review->usr_image)
+                          <img class="lazy img-responsive " src="{{Config::get('url.web')}}public/user_uploads/1000/{{$review->id}}/{{$review->usr_image}}" alt="" style="height:36px;width: 36px; display: inline;border-radius:50px;border:1px solid #ddd;">
+                        @else
+                          <img class="lazy img-responsive " src="{{Config::get('url.home')}}public/berdict/img/avatar_50.png" data-original="{{Config::get('url.web')}}public/user_uploads/1000/{{$review->id}}/{{$review->usr_image}}" alt="" style="height:36px;width: 36px; display: inline;border-radius:50px;border:1px solid #ddd;">                        
+                        @endif                       
                        </a>
                        <div class="feed-rate-user-details">
                           <a href="{{Config::get('url.home')}}{{$review->username}}"><span class="helper"> {{$review->usr_fname.' '.$review->usr_lname}} </span></a> 
