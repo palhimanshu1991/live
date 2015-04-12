@@ -18,6 +18,7 @@
           <th>#</th>
           <th>Name</th>
           <th>Email</th>
+          <th>FB</th>
           <th>Reviews</th>
           <th>Watched</th>
           <th>Watchlist</th>
@@ -38,6 +39,7 @@
           <th scope="row">{{$user->id}}</th>
           <td><a target="_blank" href="http://www.berdict.com/{{$user->username}}">{{$user->usr_fname.' '.$user->usr_lname}}</a></td>
           <td><a href="mailTo:{{$user->usr_email}}">{{$user->usr_email}}</a></td>
+          <td>@if($user->usr_fb_link)<a href="{{$user->usr_fb_link}}"><i class="glyphicon glyphicon-send"></i></a>@endif</td>
           <td>{{$reviews}}</td>
           <td>{{$watched}}</td>
           <td>{{$watchlist}}</td>
