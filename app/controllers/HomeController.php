@@ -108,6 +108,7 @@ class HomeController extends BaseController {
             $reviews = DB::table('film_review')
                     ->join('film', 'film.fl_id', '=', 'film_review.fr_fl_id')
                     ->join('users', 'users.id', '=', 'film_review.fr_usr_id')
+                    ->where('fr_usr_id','<',130)
 					->orderBy('fr_id', 'desc')
                     ->take('10')
                     ->distinct()
@@ -385,7 +386,6 @@ class HomeController extends BaseController {
             $review = DB::table('film_review')
                     ->join('film', 'film.fl_id', '=', 'film_review.fr_fl_id')
                     ->join('users', 'users.id', '=', 'film_review.fr_usr_id')
-                    ->whereBetween('users.id', array(1, 130))
                     ->take('6')
                     ->get();
 
