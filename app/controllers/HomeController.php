@@ -84,7 +84,7 @@ class HomeController extends BaseController {
             $home = new HomeController();
             $recent = DB::table('film')
                     ->select('fl_id', 'fl_name', 'fl_image', 'fl_year', 'fl_stars', 'fl_genre', 'fl_outline', 'fl_dir_ar_id', 'fl_releasedate')
-                    ->take(24)
+                    ->take(12)
                     ->orderBy('fl_release_date', 'desc')
                     //->whereRaw('fl_id NOT IN (select fs_fl_id from film_spotlight)')
                     ->remember(10)
@@ -105,14 +105,15 @@ class HomeController extends BaseController {
                     ->orderBy('action_date', 'desc')
                     ->get();
 
-            $review = DB::table('film_review')
+            $reviews = DB::table('film_review')
                     ->join('film', 'film.fl_id', '=', 'film_review.fr_fl_id')
                     ->join('users', 'users.id', '=', 'film_review.fr_usr_id')
 					->orderBy('fr_id', 'desc')
-                    ->take('6')
+                    ->take('10')
+                    ->distinct()
                     ->get();
 
-            return View::make('new', compact('review', 'critics', 'recent', 'other'));
+            return View::make('new', compact('reviews', 'critics', 'recent', 'other'));
 			
         }
     }
