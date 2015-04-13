@@ -93,7 +93,7 @@
                           </div>
                        </div>              
                        <div class="res-review-rating col-md-3 col-xs-3 pad0" style="width:80px:">
-                          <img class=" img-responsive" src="http://localhost/lara3/public/rate_{{$review->fr_vote}}.jpg" alt="" style="width:42px;display: inline;float:right;">
+                          <img class=" img-responsive" src="{{Config::get('url.web')}}public/rate_{{$review->fr_vote}}.jpg" alt="" style="width:42px;display: inline;float:right;">
                           <span style="background:#dbdbdb;;width:30px;height:42px;display: inline;float:right;font-size:16px;font-weight:600;padding:10px 0px;color:#666;text-align:center;">
                           {{$review->fr_vote}}                                     
                           </span>
