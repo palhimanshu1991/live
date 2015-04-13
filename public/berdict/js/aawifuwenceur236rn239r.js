@@ -283,8 +283,9 @@ function SignUp()
             FacebookSignUp();
         } else
         {
+            alert('Please authorise Facebook to sign up. Don"t worry we don"t spam your timeline. :)');            
             console.log('User cancelled login or did not fully authorize.');
-			Alert('Please authorise to sign up.');
+            mixpanel.track("facebook-signup-cancelled");
         }
     }, {scope: 'email,user_friends'});
 

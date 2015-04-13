@@ -35,11 +35,11 @@
     letter-spacing: 0.06em;
     border-bottom: 1px solid #ccc !important;
 ">Login</a>    
-
+              <p style="text-align: center;padding:20px 0px;color:#666;">Don't worry, we won't spam your Facebook Timeline ever. Promise. :)</p>
 
                 </div>          
             </div>  
-            <div class="col-md-12" style="text-align: center;padding:40px 0px;color:#888;">
+            <div class="col-md-12" style="text-align: center;padding:0px 0px 40px;color:#999;">
                 <a class="email-signup" style="color:#000;" href="{{Config::get('url.home')}}signup">Sign Up With Email.</a> By signing up you indicate <br/>that you have read and agree to the Terms of Service.
             </div>
             <div class="col-md-12 ptop0 mbot2 hidden" style="text-align: center;padding-top:30px;">
