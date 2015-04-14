@@ -35,7 +35,7 @@
     letter-spacing: 0.06em;
     border-bottom: 1px solid #ccc !important;
 ">Login</a>    
-              <p style="text-align: center;padding:20px 0px;color:#666;">Don't worry, we won't spam your Facebook Timeline ever. Promise. :)</p>
+              <p id="spam-msg" style="text-align: center;padding:20px 0px;color:#666;">Don't worry, we won't spam your Facebook Timeline ever. Promise. :)</p>
 
                 </div>          
             </div>  

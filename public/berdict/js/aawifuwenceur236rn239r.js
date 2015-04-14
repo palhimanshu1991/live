@@ -276,7 +276,8 @@ function Login()
 
 function SignUp()
 {
-
+    $('#spam-msg').html('<div style="color:red;">Please allow your browser to open the pop-up.</div><br/>');  
+    
     FB.login(function(response) {
         if (response.authResponse)
         {
@@ -367,7 +368,7 @@ function Logout()
 
 
 
-            setTimeout(function() {
+            setTimeout(function() {             
 	            $('#buttons-container').html('<div>Please wait a like a boss while we do the stuff for you.....</div><br/>');            	
 				$('#buttons-container').append('<img width="500px" src="http://www.laboiteverte.fr/wp-content/uploads/2011/09/28-The-Godfather.gif">');
             },1000);
