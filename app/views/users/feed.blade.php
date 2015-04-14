@@ -282,7 +282,7 @@ window._fbq.push(['track', '6028314635731', {'value':'0.01','currency':'USD'}]);
                </div>
             </div>
 
-                @elseif ($action->type_id=="3") 
+                @elseif ($action->type_id=="30") 
                 <?php $film = DB::table('film')->where('fl_id', $action->object_id)->first(); ?>
                 <div class="row-fluid res-review" style="">
                     <div class="res-review-user col-md-12 pad0">
@@ -311,7 +311,7 @@ window._fbq.push(['track', '6028314635731', {'value':'0.01','currency':'USD'}]);
                     </div>
                 </div>
 
-                @elseif ($action->type_id=="5") 
+                @elseif ($action->type_id=="50") 
                 <?php $film = DB::table('film')->where('fl_id', $action->object_id)->first(); ?>
                 <div class="row-fluid res-review" style="">
                     <div class="res-review-user col-md-12 pad0">
