@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => 'pal.himanshu1991@gmail.com',
+	'username' => 'himanshu@berdict.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => 'eoLaV34mtJD6MBz_vKs3yQ',
+	'password' => '6MPEBIHc5Cz7J6-od-zyvQ',
 
 	/*
 	|--------------------------------------------------------------------------
