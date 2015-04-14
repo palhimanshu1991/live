@@ -36,7 +36,7 @@
           <td>{{$likes}}</td>
           <td>{{$comments}}</td>
           <td>{{$review->fr_views}}</td>
-          <td><a  href="{{Config::get('url.home')}}admin/review/delete/{{$review->fr_id}}"><i class="glyphicon glyphicon-trash"></i></a></td>
+          <td><a href="{{Config::get('url.home')}}admin/review/delete/{{$review->fr_id}}"><i class="glyphicon glyphicon-trash"></i></a></td>
         </tr>
         @endforeach
 

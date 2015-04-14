@@ -134,7 +134,7 @@
                                         </a>
                                     </div>
                                 </li>
-                                @else
+                                @elseif($noti->type=="liked")
                                 <?php $film = DB::table('film_review')->where('fr_id', $noti->object_id)->join('film', 'film.fl_id', '=', 'film_review.fr_fl_id')->first(); ?>
                                 <li data-id="{{$noti->notification_id}}" id="noti_read" class="noti_read" data-url="{{Config::get('url.home')}}reviews/{{$noti->object_id}}" role="presentation">
                                     <div class="noti-parent" style="">
@@ -146,7 +146,18 @@
                                         </a>
                                     </div>
                                 </li>                 
-
+                                @elseif($noti->type=="reply")
+                                <?php $film = DB::table('film_review')->where('fr_id', $noti->object_id)->join('film', 'film.fl_id', '=', 'film_review.fr_fl_id')->first(); ?>
+                                <li data-id="{{$noti->notification_id}}" id="noti_read" class="noti_read" data-url="{{Config::get('url.home')}}reviews/{{$noti->object_id}}" role="presentation">
+                                    <div class="noti-parent" style="">
+                                        <a role="menuitem" tabindex="-1" href="{{Config::get('url.home')}}reviews/{{$noti->object_id}}">
+                                            <div class="noti-div">
+                                                <span style="color:#27ae60;font-size: 14px;margin-right:8px;float:left;min-height: 20px;" class="glyphicon glyphicon-thumbs-up"></span>
+                                                <m>{{$user->usr_fname.' '.$user->usr_lname}}</m> replied to your review for <m>"{{$film->fl_name}}"</m>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>                 
                                 @endif
 
 

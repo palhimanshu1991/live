@@ -46,7 +46,7 @@ class CommentsController extends Controller {
 
 			$this->notification($me,$user,$review);
 
-			//$this->replyMail($me, $user->fr_usr_id, $user->fr_fl_id, $user);
+			$this->replyMail($me, $user->fr_usr_id, $user->fr_fl_id, $user);
 			
 			return View::make('reviews.reply', compact('reply'));
 
@@ -65,12 +65,12 @@ class CommentsController extends Controller {
 		$noti = new Notification;               // notification instance
 		$noti->user_id = $user->fr_usr_id;      // the user who will get this notification
 		$noti->subject_type = 'user';           // user
-		$noti->subject_id = $me;   // the uset who liked the review
+		$noti->subject_id = $me;   				// the uset who liked the review
 		$noti->object_type = 'review';          // object is review 
 		$noti->object_id = $review;             // id of the review in picture
 		$noti->type = 'reply';                  // liked - notification type
 		$noti->read = '0';                      // default '0' as it is unread
-		$noti->time = time();                      // default '0' as it is unread
+		$noti->time = time();                   // default '0' as it is unread
 		$noti->save();                          // saves notification
 	
 	}	

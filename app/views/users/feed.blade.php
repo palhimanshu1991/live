@@ -146,7 +146,7 @@ window._fbq.push(['track', '6028314635731', {'value':'0.01','currency':'USD'}]);
             <div class="row-fluid col-md-9 pad0" style="margin-bottom:30px;" id="data-review-4477">
                <div class="res-review-user col-md-12 pad0" style="height: 50px;">
                   <a class="left" href="{{Config::get('url.home')}}{{$action->username}}">
-                  <img class="lazy img-responsive " src="{{Config::get('url.home')}}public/berdict/img/avatar_50.png" data-original="{{Config::get('url.web')}}public/user_uploads/1000/{{$action->id}}/{{$action->usr_image}}" alt="" style="height:36px;width: 36px; display: inline;border-radius:50px;">
+                    <img class="lazy img-responsive " src="{{Config::get('url.home')}}public/berdict/img/avatar_50.png" data-original="{{Config::get('url.web')}}public/user_uploads/1000/{{$action->id}}/{{$action->usr_image}}" alt="" style="height:36px;width: 36px; display: inline;border-radius:50px;">
                   </a>
                   <div class="feed-rate-user-details">
                      <a href="{{Config::get('url.home')}}{{$action->username}}"><span class="helper">{{$action->usr_fname.' '.$action->usr_lname}} </span></a> 
@@ -225,7 +225,9 @@ window._fbq.push(['track', '6028314635731', {'value':'0.01','currency':'USD'}]);
                </div>
             </div>
             <div  class="col-md-3 visible-md-9 hidden-sm hidden-xs" style="margin-bottom:40px;">
-               <img rel="popover" data-original-title="{{$movie->fl_name}}" data-container="body" data-toggle="popover" data-placement="left" data-trigger="click" data-content="{{$movie->fl_outline}}" class="lazy" src="{{Config::get('url.home')}}public/berdict/img/default_poster.jpg" data-original="{{Config::get('url.web')}}public/uploads/movie/{{$film->fl_year}}/{{$film->fl_image}}" alt="" style="display: inline;margin-left: 20px;border:1px solid #ccc;max-height: 320px;min-height: 300px;max-width: 210px;width: 205px;">             
+                <a class="" href="{{Config::get('url.home')}}movie/{{$film->fl_id}}/{{Common::cleanUrl($film->fl_name)}}"> 
+                  <img class="lazy" src="{{Config::get('url.home')}}public/berdict/img/default_poster.jpg" data-original="{{Config::get('url.web')}}public/uploads/movie/{{$film->fl_year}}/{{$film->fl_image}}" alt="" style="display: inline;margin-left: 20px;border:1px solid #ccc;max-height: 320px;min-height: 300px;max-width: 210px;width: 205px;">             
+                </a>
             </div>
             <!--- Old review -->
             <div class="row-fluid res-review" style="display:none;" id="data-review-{{$film->fr_id}}">
@@ -241,7 +243,7 @@ window._fbq.push(['track', '6028314635731', {'value':'0.01','currency':'USD'}]);
                   <div class="res-review-header col-md-12 pad0" style="min-height:90px;">
                      <div class="res-review-user col-md-1 pad0" style="min-height:90px;width:70px;">
                         <a class="left" href="{{Config::get('url.home')}}{{$action->username}}">
-                        <img class="lazy img-responsive " src="{{Config::get('url.home')}}public/berdict/img/default_poster.jpg" data-original="{{Config::get('url.web')}}public/uploads/movie/{{$film->fl_year}}/{{$film->fl_image}}" alt="" style="height:90px;width: 60px; display: inline;">
+                          <img class="lazy img-responsive " src="{{Config::get('url.home')}}public/berdict/img/default_poster.jpg" data-original="{{Config::get('url.web')}}public/uploads/movie/{{$film->fl_year}}/{{$film->fl_image}}" alt="" style="height:90px;width: 60px; display: inline;">
                         </a>
                      </div>
                      <div class="res-review-user col-md-8 pad0" style="min-height:90px;width:500px">
