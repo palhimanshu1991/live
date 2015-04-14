@@ -1,5 +1,141 @@
 
 
+$(".movie-review-textarea").keyup(function() {
+    var text = $(this).val().length;
+    if (text>0) {
+        $(this).parent().parent().find('.review-submit').removeClass('hidden');        
+    } else {
+        $(this).parent().parent().find('.review-submit').addClass('hidden');                
+    }
+});
+
+$(".review-submit").click(function() {
+
+    var review = $(this).parent().parent().find('.movie-review-textarea').val();
+    var review_len = review.length;
+    var film = $(this).attr("movie-id");
+    var user = USER;
+    var vote = $("#rateit-range-2").attr("aria-valuenow");  
+    if($('#fbshare').is(':checked')) {
+        var fbshare = '1';
+    } else {
+        var fbshare = '0';  
+    }   
+
+    if (vote == '0') {
+        $("#error").html('Please Rate the Movie.');
+        $("#error").slideDown(500);
+    } else if (review_len < 50) {
+        $("#error").html('The Review should be atleast 50 characters long.');
+        $("#error").slideDown(500);
+    } else {
+        $("#review-form-textarea").val('');
+        $("#review-form-textarea").focus();
+        $("#noreview").fadeOut(800);
+        $("#error").html('Posting your review.......');
+        $("#error").slideDown(500);
+
+        $.ajax({
+            type: "POST",
+            url: HOST + "review/add",
+            data: {review: review, film: film, user: user, vote: vote, fbshare: fbshare},
+            dataType: 'text',
+            //cache: false,
+            success: function(data) {
+                $("#error").slideUp(500);
+                $('#my-review').prepend(data);
+                $("#noreview").fadeOut(500);
+                $("#stexpand").oembed(updateval);
+            }
+        });
+    }
+    
+    setTimeout(function() {
+        $("#error").slideUp(500);
+    }, 2000);
+    
+    return false;
+});
+
+
+$(".activity-comment-submit").click(function() {
+    var comment = $(this).parent().find(".js_activity_comment").val();
+    var review = $(this).attr("data-review-id");
+    var container = $(".activity_comments_container");
+    $(this).parent().find(".js_activity_comment").val('');
+    $.ajax({
+        type: "POST",
+        url: HOST + "comment/add",
+        data: {review: review, user: USER, comment: comment},
+        dataType: 'text',
+        //cache: false,
+        success: function(data) {
+            container.append(data);
+        }
+    });
+    return false;   
+});
+$('.review-comment').on('keyup', function(e){
+    var text = $(this).val().length;
+
+    if(text>0){
+        $(this).parent().parent().find(".review-comment-submit").removeClass('hidden');
+    }
+    if(text<1 || text==0){
+        $(this).parent().parent().find(".review-comment-submit").addClass('hidden');
+        return;
+    }
+
+    if (e.keyCode == 13) {
+
+
+        //posting a comment
+        var comment     =   $(this).val();
+        var review      =   $(this).attr("comment-review-id");
+        var container   =   $(".comment-container-"+review);
+
+        $(this).parent().find(".js_activity_comment").val('');
+
+        //If enter button is press then it posts it
+        $(this).val("");
+        $(this).attr("placeholder","Posting your comment.....");
+        $(this).parent().parent().find(".review-comment-submit").addClass('hidden');
+        
+        container.removeClass('hidden');
+
+        $(this).attr("placeholder","Comment posted");        
+
+
+        $.ajax({
+            type: "POST",
+            url: HOST + "comment/add",
+            data: {review: review, user: USER, comment: comment},
+            dataType: 'text',
+            //cache: false,
+            success: function(data) {
+                container.append(data);
+            }
+        });
+        return false;   
+    }
+
+
+});
+
+$('.comment-open').on('click', function(e){
+    var review = $(this).attr('review-id');
+    $('.comment-container-'+review).removeClass('hidden');
+    
+});
+
+$('#review-form-textarea').on('focusin', function(e){
+    $('#review-tools').removeClass('hidden');
+});
+
+
+
+
+
 $('#invite-friend-submit').on('click', function(e){
 	$(this).html('Sending...');
 	var email = $('#invite-friend-email').val();

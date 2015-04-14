@@ -12,13 +12,12 @@
         <link rel="stylesheet" type="text/css" href="{{Config::get('url.home')}}public/bootstrap/css/docs.css">
         <link rel="stylesheet" type="text/css" href="{{ Config::get('url.home')}}public/rate/rateit.css">
 		<link rel="stylesheet" type="text/css" href="{{Config::get('url.home')}}public/bootstrap/css/ionicons.css">
-
+        <link href='http://fonts.googleapis.com/css?family=Oxygen:700,400,300' rel='stylesheet' type='text/css'>
 
         <style>
-            @import url(//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
 
             body {
-                font-family:'Open Sans', sans-serif;
+                font-family:'Oxygen', sans-serif;
                 text-shadow: none;
             }
             .pagination {
@@ -52,6 +51,13 @@
             FB_APP_ID = "437161969726572";
             HOST = "http://www.berdict.com/";
         </script>
+        @endif
+
+
+        @if(Auth::check())
+        <script type="text/javascript">
+            USER = "{{Auth::user()->id}}";
+        </script>        
         @endif
 
     </head>

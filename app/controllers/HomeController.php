@@ -67,14 +67,20 @@ class HomeController extends BaseController {
                         ->orderBy('action_date', 'desc')
                         ->get();
             } else {
+                
                 $friend = DB::table('user_actions')
                         ->join('users', 'users.id', '=', 'user_actions.subject_id')
-                        ->orWhere('user_actions.subject_id', Auth::user()->id)
-                        ->take('40')
+                        ->where('type_id', '2')
+                        ->whereNotIn('user_actions.subject_id', array(Auth::user()->id))
+                        ->take('20')
                         ->orderBy('action_date', 'desc')
+                        ->remember('5')
                         ->get();
+
             }
+
             $this->layout->content = View::make('users.feed', compact('friend', 'critics', 'recent', 'other'));
+        
         } else {
 
 
