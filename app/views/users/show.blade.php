@@ -98,7 +98,7 @@
             <?php $film       =  DB::table('film')->where('fl_id', $action->object_id)->join('film_review', 'film_review.fr_fl_id', '=', 'film.fl_id')->where('film_review.fr_usr_id', $user->id)->first(); ?>
             <?php $like       =  DB::table('review_likes')->where('review_id', $film->fr_id)->where('user_id', Auth::user()->id)->first(); ?>
             <?php $likeCount  =  DB::table('review_likes')->where('review_id', $film->fr_id)->count(); ?>
-            <?php                DB::table('film_review')->where('fr_id',$film->fr_id)->increment('fr_views',Rand(2,5)); ?>
+            <?php                DB::table('film_review')->where('fr_id',$film->fr_id)->increment('fr_views'); ?>
             <?php $replies    =  DB::table('review_comments')->where('rc_review_id', $film->fr_id)->join('users','users.id','=','review_comments.rc_user_id')->get(); ?>                                   
             <?php $replyCount =  DB::table('review_comments')->where('rc_review_id', $film->fr_id)->count(); ?>                                   
             <div class="row-fluid col-md-9 pad0" style="margin-bottom:30px;" id="data-review-4477">
