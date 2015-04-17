@@ -22,7 +22,7 @@
             </div>
 			@if(Auth::check())
             <div class="row-fluid" style="margin-top:20px;height:50px">
-                <!-- Favourite Button--->
+                <!-- Favourite Button---->
                 @if ($fav==3)
 
                 @elseif ($fav==0)
@@ -37,7 +37,7 @@
                 </div>
                 @endif
 
-                <!-- Watchlist Button--->
+                <!-- Watchlist Button---->
                 @if ($watch==3)
 
                 @elseif ($watch==0)

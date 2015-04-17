@@ -40,7 +40,7 @@ window._fbq.push(['track', '6028314635731', {'value':'0.01','currency':'USD'}]);
                 <div class="jcarousel-wrapper">
                     <div class="jcarousel" data-jcarousel="true">
                         <ul style="left: 0px; top: 0px;">
-                            @foreach ($other as $movie)
+                            @foreach ($recent as $movie)
                             <li>
                                 <div class="feed-gallery left" rel="popover" data-original-title="{{$movie->fl_name}}" data-container="body" data-toggle="popover" data-placement="bottom" data-trigger="hover" data-content="{{$movie->fl_outline}}" style="">									
                                     <a href="{{ Config::get('url.home')}}movie/{{$movie->fl_id}}/{{Common::cleanUrl($movie->fl_name)}}">
@@ -140,7 +140,7 @@ window._fbq.push(['track', '6028314635731', {'value':'0.01','currency':'USD'}]);
             <?php $film       =  DB::table('film')->where('fl_id', $action->object_id)->join('film_review', 'film_review.fr_fl_id', '=', 'film.fl_id')->where('film_review.fr_usr_id', $action->id)->first(); ?>
             <?php $like       =  DB::table('review_likes')->where('review_id', $film->fr_id)->where('user_id', Auth::user()->id)->first(); ?>
             <?php $likeCount  =  DB::table('review_likes')->where('review_id', $film->fr_id)->count(); ?>
-            <?php                DB::table('film_review')->where('fr_id',$film->fr_id)->increment('fr_views',Rand(2,7)); ?>
+            <?php                DB::table('film_review')->where('fr_id',$film->fr_id)->increment('fr_views'); ?>
             <?php $replies    =  DB::table('review_comments')->where('rc_review_id', $film->fr_id)->join('users','users.id','=','review_comments.rc_user_id')->get(); ?>                                   
             <?php $replyCount =  DB::table('review_comments')->where('rc_review_id', $film->fr_id)->count(); ?>                                   
             <div class="row-fluid col-md-9 pad0" style="margin-bottom:30px;" id="data-review-4477">

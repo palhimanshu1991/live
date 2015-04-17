@@ -21,19 +21,7 @@ class HomeController extends BaseController {
 
         if (Auth::check()) {
 
-            $Movies = new MoviesController();
-            $critics = $Movies->getCritics(Auth::user()->id);
-
-            $home = new HomeController();
             $recent = DB::table('film')
-                    ->select('fl_id', 'fl_name', 'fl_image', 'fl_year', 'fl_stars', 'fl_genre', 'fl_outline', 'fl_dir_ar_id', 'fl_releasedate')
-                    ->take(10)
-                    ->orderBy('fl_release_date', 'desc')
-                    ->whereRaw('fl_id NOT IN (select fs_fl_id from film_spotlight)')
-                    ->remember(10)
-                    ->get();
-
-            $other = DB::table('film')
                     ->select('fl_id', 'fl_name', 'fl_image', 'fl_year', 'fl_stars', 'fl_genre', 'fl_outline', 'fl_dir_ar_id', 'fl_releasedate')
                     ->take(20)
                     ->orderBy('fl_release_date', 'desc')
@@ -79,37 +67,9 @@ class HomeController extends BaseController {
 
             }
 
-            $this->layout->content = View::make('users.feed', compact('friend', 'critics', 'recent', 'other'));
+            $this->layout->content = View::make('users.feed', compact('friend','recent' ));
         
         } else {
-
-
-            $Movies = new MoviesController();
-            $critics = array();
-
-            $home = new HomeController();
-            $recent = DB::table('film')
-                    ->select('fl_id', 'fl_name', 'fl_image', 'fl_year', 'fl_stars', 'fl_genre', 'fl_outline', 'fl_dir_ar_id', 'fl_releasedate')
-                    ->take(12)
-                    ->orderBy('fl_release_date', 'desc')
-                    //->whereRaw('fl_id NOT IN (select fs_fl_id from film_spotlight)')
-                    ->remember(10)
-                    ->get();
-
-            $other = DB::table('film')
-                    ->select('fl_id', 'fl_name', 'fl_image', 'fl_year', 'fl_stars', 'fl_genre', 'fl_outline', 'fl_dir_ar_id', 'fl_releasedate')
-                    ->take(20)
-                    ->orderBy('fl_release_date', 'desc')
-                    ->remember(10)
-                    ->get();
-
-            // gets the user details fro username
-            $friends = DB::table('user_actions')
-                    ->leftjoin('user_friends', 'user_friends.friend_user_id', '=', 'user_actions.subject_id')
-                    ->join('users', 'users.id', '=', 'user_actions.subject_id')
-                    ->take('40')
-                    ->orderBy('action_date', 'desc')
-                    ->get();
 
             $reviews = DB::table('film_review')
                     ->join('film', 'film.fl_id', '=', 'film_review.fr_fl_id')
@@ -120,7 +80,7 @@ class HomeController extends BaseController {
                     ->distinct()
                     ->get();
 
-            return View::make('new', compact('reviews', 'critics', 'recent', 'other'));
+            return View::make('new', compact('reviews'));
 			
         }
     }

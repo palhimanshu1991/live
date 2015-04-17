@@ -50,17 +50,7 @@
 </div>
 
 
-<div class="hidden">
-    <div class="container wrapper pbot2 mbot2">
-        <div class="row">
-            @foreach($recent as $movie)
-            <div class="col-md-2">
-                <img class="img-responsive" style="height:215px;"  src="{{ Config::get('url.web')}}public/uploads/movie/{{$movie->fl_year}}/{{$movie->fl_image}}">
-            </div>
-            @endforeach
-        </div>
-    </div>
-</div>
+
 
 <div class="" style="background:#fff;">
     <div class="container wrapper pbot2 mbot2" style="padding-top:40px;">

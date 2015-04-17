@@ -13,20 +13,20 @@ class UsersController extends BaseController {
     public function index() {
         return View::make('users.index');
     }
-	
+    
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
     public function invite() {
-	
-		$left = DB::table('invite_codes')->where('ic_usr_id','=',Auth::user()->id)->where('ic_sent','=','0')->get();	
-		$used = DB::table('invite_codes')->where('ic_usr_id','=',Auth::user()->id)->where('ic_sent','=','1')->get();
-		
-		$this->layout->content = View::make('users.invite',compact('left','used'));
-	
-    }	
+    
+        $left = DB::table('invite_codes')->where('ic_usr_id','=',Auth::user()->id)->where('ic_sent','=','0')->get();    
+        $used = DB::table('invite_codes')->where('ic_usr_id','=',Auth::user()->id)->where('ic_sent','=','1')->get();
+        
+        $this->layout->content = View::make('users.invite',compact('left','used'));
+    
+    }   
 
     /**
      * Display a the login page.
@@ -43,29 +43,29 @@ class UsersController extends BaseController {
      * @return Response
      */
     public function signup() {
-	
-		$code = Input::get('code');
-	
+    
+        $code = Input::get('code');
+    
         $check = DB::table('invite_codes')->where('ic_code','=',$code)->first();
-		
-		if($check) {
-		
-			if($check->ic_status==1){
+        
+        if($check) {
+        
+            if($check->ic_status==1){
 
-				$show = '0';
-				$error = 'This code has been already used.';	
+                $show = '0';
+                $error = 'This code has been already used.';    
 
-			} else {
-			
-				$show = '1';
-				$error = '';				
-			}		
-		} else {
-		
-			$show = '0';
-			$error = '';
-		}
-	
+            } else {
+            
+                $show = '1';
+                $error = '';                
+            }       
+        } else {
+        
+            $show = '0';
+            $error = '';
+        }
+    
         return View::make('users.signup',compact('show','error'));
     }
 
@@ -119,8 +119,8 @@ class UsersController extends BaseController {
         $username = Input::get('username');
         $email = Input::get('email');
         $password = Hash::make(Input::get('password'));
-		$code = Input::get('code');
-		
+        $code = Input::get('code');
+        
         // Variables 
         $usr_fname = ucwords(substr($fullname, 0, strpos($fullname, " ", 0)));
 
@@ -132,50 +132,50 @@ class UsersController extends BaseController {
             $usr_lname = ucwords(substr($fullname, strpos($fullname, " ", 0)));
         }
 
-		
-		$check = User::where('username',$username)->orWhere('usr_email',$email)->first();
+        
+        $check = User::where('username',$username)->orWhere('usr_email',$email)->first();
 
-		if($check){
-		
-		
-		} else {
-		
-			$user = new User;
-			$user->usr_fname = $usr_fname;
-			$user->usr_lname = $usr_lname;
-			$user->username = $username;
-			$user->usr_email = $email;
-			$user->berdict_key = $this->generateRandomString();
-			$user->password = $password;
-			$user->save();
+        if($check){
+        
+        
+        } else {
+        
+            $user = new User;
+            $user->usr_fname = $usr_fname;
+            $user->usr_lname = $usr_lname;
+            $user->username = $username;
+            $user->usr_email = $email;
+            $user->berdict_key = $this->generateRandomString();
+            $user->password = $password;
+            $user->save();
 
-			$insertedId = $user->id;
-			
-			$invite = New InviteController;
-			$invite->updateInvite($code);
-			$invite->createCodes($insertedId);
-			
-			//creating a directory for the user with blank index.php
-			$id = $insertedId;
-			$index = ('public/user_uploads/1000/' . $id . '/index.php');
+            $insertedId = $user->id;
+            
+            $invite = New InviteController;
+            $invite->updateInvite($code);
+            $invite->createCodes($insertedId);
+            
+            //creating a directory for the user with blank index.php
+            $id = $insertedId;
+            $index = ('public/user_uploads/1000/' . $id . '/index.php');
 
-			//Makes the directories if the index file does not exist
-			if (!File::exists($index)) {
-				File::makeDirectory('public/user_uploads/1000/' . $id . '', 0777, true);
-				$handle = fopen($index, 'x+');
-				fclose($handle);
-			}
+            //Makes the directories if the index file does not exist
+            if (!File::exists($index)) {
+                File::makeDirectory('public/user_uploads/1000/' . $id . '', 0777, true);
+                $handle = fopen($index, 'x+');
+                fclose($handle);
+            }
 
-			// user exit login
-			$user = User::find($insertedId);
-			Auth::login($user);
+            // user exit login
+            $user = User::find($insertedId);
+            Auth::login($user);
 
-			return Redirect::to('/');
-		
-		}		
-		
-		
-		
+            return Redirect::to('/');
+        
+        }       
+        
+        
+        
 
     }
 
@@ -190,7 +190,7 @@ class UsersController extends BaseController {
         // gets the user details fro username
         $user = DB::table('users')
                 ->where('username', $id)
-				->join('user_level', 'user_level.ul_id', '=', 'users.user_level')
+                ->join('user_level', 'user_level.ul_id', '=', 'users.user_level')
                 ->first();
 
         $follower = $this->getFollower($user->id);
@@ -198,6 +198,9 @@ class UsersController extends BaseController {
         $followerCount = $this->getFollowerCount($user->id);
         $followingCount = $this->getFollowingCount($user->id);
         $reviewCount = $this->getReviewCount($user->id);
+        $viewCount = $this->getViewCount($user->id);
+        $movieCount = $this->getMovieCount($user->id);
+
 
         //gets the favourite
         $fav = $this->getFav($user->id);
@@ -226,7 +229,7 @@ class UsersController extends BaseController {
 
 
 
-        $this->layout->content = View::make('users.show', compact('user', 'fav', 'action', 'follow', 'follower', 'followerCount', 'following', 'followingCount', 'reviewCount'));
+        $this->layout->content = View::make('users.show', compact('user', 'fav', 'action', 'follow', 'follower', 'followerCount', 'following', 'followingCount', 'reviewCount','viewCount','movieCount'));
     }
 
     public function getAction($id) {
@@ -387,7 +390,7 @@ class UsersController extends BaseController {
 
             // creating a notification
             $noti = new Notification;               // notification instance
-            $noti->user_id = $user;      			// the user who will get this notification
+            $noti->user_id = $user;                 // the user who will get this notification
             $noti->subject_type = $subject_type;           // user
             $noti->subject_id = $subject_id;   // the uset who liked the review
             $noti->object_type = $object_type;          // object is review 
@@ -569,15 +572,30 @@ class UsersController extends BaseController {
                         ->get();
     }
 
-    public function getFollowingCount($id) {
 
+    public function getFollowingCount($id) {
         return Friend::where('follower_user_id', $id)->count();
     }
 
     public function getReviewCount($id) {
-
         return Review::where('fr_usr_id', $id)->count();
     }
+
+    public function getViewCount($id) {
+        return Review::where('fr_usr_id', $id)->sum('fr_views');
+    }   
+
+    public function getFavCount($id) {
+        return Favourite::where('fav_usr_id', $id)->count();
+    }   
+
+    public function getWatchCount($id) {
+        return Watchlist::where('uw_usr_id', $id)->count();
+    }   
+
+    public function getMovieCount($id) {
+        return DB::table('user_watched')->where('watched_usr_id', $id)->count();
+    }   
 
     public function UserFollowers($id) {
 
@@ -755,7 +773,7 @@ class UsersController extends BaseController {
             $message->from('no-reply@berdict.com', 'Berdict');
         });
     }
-	
+    
     public function newRandomFollowMail($subject,$random) {
 
         // subject is the ID of the user who gets the email
@@ -787,9 +805,9 @@ class UsersController extends BaseController {
             $message->subject($emailSubject);
             $message->from('no-reply@berdict.com', 'Berdict');
         });
-    }	
-	
-	
+    }   
+    
+    
    /**
      * User follow 
      *
@@ -798,16 +816,16 @@ class UsersController extends BaseController {
      */
     public function random($id) {
 
-		//random follower
-		$ran = DB::table('users')->whereBetween('id', array(1, 130))->orderBy(DB::raw('RAND()'))->first();				
-		$random = $ran->id;
-		
-		$check = DB::table('user_friends')
-					->where('friend_user_id', $id)
+        //random follower
+        $ran = DB::table('users')->whereBetween('id', array(1, 130))->orderBy(DB::raw('RAND()'))->first();              
+        $random = $ran->id;
+        
+        $check = DB::table('user_friends')
+                    ->where('friend_user_id', $id)
                     ->where('follower_user_id', $random)
                     ->first(); 
-		
-        $user = $id;							// user being followed
+        
+        $user = $id;                            // user being followed
         $follow = $check;
         $subject_type = 'user';                 // always user, the user who triggered this notification
         $subject_id = $random;         // the follower or user who triggered the notification
@@ -847,86 +865,86 @@ class UsersController extends BaseController {
             $act->action_date = \time();           // default '0' as it is unread
             $act->save();                          // saves activity     
 
-			
-			if($id>130) {
-				$mail = $this->newRandomFollowMail($user,$ran);
-			}
-		}
-
-		return $ran->id." followed ".$id;
-
-    }
-	
-	
-	
-    public function randoms() {
-
-		//random follower
-		$id = DB::table('users')->orderBy(DB::raw('RAND()'))->first();
-		$ran = DB::table('users')->whereBetween('id', array(1, 130))->orderBy(DB::raw('RAND()'))->first();				
-		$random = $ran->id;
-		
-		$check = DB::table('user_friends')
-					->where('friend_user_id', $id->id)
-                    ->where('follower_user_id', $random)
-                    ->first(); 
-		
-        $user = $id->id;							// user being followed
-        $follow = $check;
-        $subject_type = 'user';                 // always user, the user who triggered this notification
-        $subject_id = $random;         // the follower or user who triggered the notification
-        $object_type = 'user';
-        $object_id = $random;
-        $type = 'follow';
-
-        if ($follow) {
             
-        } else {
-
-            $query = DB::table('user_friends')->insertGetId(
-                    array(
-                        'friend_user_id' => $user,
-                        'follower_user_id' => $random
-                    )
-            );
-
-
-            // creating a notification
-            $noti = new Notification;               // notification instance
-            $noti->user_id = $user;      // the user who will get this notification
-            $noti->subject_type = $subject_type;           // user
-            $noti->subject_id = $subject_id;   // the uset who liked the review
-            $noti->object_type = $object_type;          // object is review 
-            $noti->object_id = $object_id;             // id of the review in picture
-            $noti->type = $type;                  // liked - notification type
-            $noti->read = '0';                      // default '0' as it is unread
-            $noti->time = time();                      // default '0' as it is unread
-            $noti->save();                          // saves notification       
-            /// insert into the user actions
-            $act = new Activity;               // notification instance
-            $act->type_id = '4';                   // the user who will get this notification
-            $act->subject_id = $subject_id;   // user
-            $act->object_type = 'user';            // object is review 
-            $act->object_id = $user;               // id of the review in picture
-            $act->action_date = \time();           // default '0' as it is unread
-            $act->save();                          // saves activity     
-
-			if($user>130) {
-				$mail = $this->newRandomFollowMail($user,$ran);
-			}
+            if($id>130) {
+                $mail = $this->newRandomFollowMail($user,$ran);
+            }
         }
 
-		return $ran->id." followed ".$id->id;
+        return $ran->id." followed ".$id;
 
-    }	
-	
-	public 	function generateRandomString($length = 50) {
-		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		$randomString = '';
-		for ($i = 0; $i < $length; $i++) {
-			$randomString .= $characters[rand(0, strlen($characters) - 1)];
-			}
-		return $randomString;
-	}	
+    }
+    
+    
+    
+    public function randoms() {
+
+        //random follower
+        $id = DB::table('users')->orderBy(DB::raw('RAND()'))->first();
+        $ran = DB::table('users')->whereBetween('id', array(1, 130))->orderBy(DB::raw('RAND()'))->first();              
+        $random = $ran->id;
+        
+        $check = DB::table('user_friends')
+                    ->where('friend_user_id', $id->id)
+                    ->where('follower_user_id', $random)
+                    ->first(); 
+        
+        $user = $id->id;                            // user being followed
+        $follow = $check;
+        $subject_type = 'user';                 // always user, the user who triggered this notification
+        $subject_id = $random;         // the follower or user who triggered the notification
+        $object_type = 'user';
+        $object_id = $random;
+        $type = 'follow';
+
+        if ($follow) {
+            
+        } else {
+
+            $query = DB::table('user_friends')->insertGetId(
+                    array(
+                        'friend_user_id' => $user,
+                        'follower_user_id' => $random
+                    )
+            );
+
+
+            // creating a notification
+            $noti = new Notification;               // notification instance
+            $noti->user_id = $user;      // the user who will get this notification
+            $noti->subject_type = $subject_type;           // user
+            $noti->subject_id = $subject_id;   // the uset who liked the review
+            $noti->object_type = $object_type;          // object is review 
+            $noti->object_id = $object_id;             // id of the review in picture
+            $noti->type = $type;                  // liked - notification type
+            $noti->read = '0';                      // default '0' as it is unread
+            $noti->time = time();                      // default '0' as it is unread
+            $noti->save();                          // saves notification       
+            /// insert into the user actions
+            $act = new Activity;               // notification instance
+            $act->type_id = '4';                   // the user who will get this notification
+            $act->subject_id = $subject_id;   // user
+            $act->object_type = 'user';            // object is review 
+            $act->object_id = $user;               // id of the review in picture
+            $act->action_date = \time();           // default '0' as it is unread
+            $act->save();                          // saves activity     
+
+            if($user>130) {
+                $mail = $this->newRandomFollowMail($user,$ran);
+            }
+        }
+
+        return $ran->id." followed ".$id->id;
+
+    }   
+    
+    public  function generateRandomString($length = 50) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, strlen($characters) - 1)];
+            }
+        return $randomString;
+    }   
 
 }
