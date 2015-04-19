@@ -22,7 +22,8 @@
           <th>Reviews</th>
           <th>Watched</th>
           <th>Watchlist</th>
-          <th>Favourite</th>          
+          <th>Favs</th>  
+          <th>Friends</th>          
         </tr>
       </thead>
       <tbody>
@@ -33,6 +34,7 @@
             $watched    =  DB::table('user_watched')->where('watched_usr_id',$user->id)->count();
             $watchlist  =  DB::table('user_watchlist')->where('uw_usr_id',$user->id)->count();
             $Favourite   =  DB::table('user_fav')->where('fav_usr_id',$user->id)->count();
+            $FB   =  DB::table('user_facebook')->where('ufb_usr_id',$user->id)->count();
 
         ?>
         <tr>
@@ -43,7 +45,8 @@
           <td>{{$reviews}}</td>
           <td>{{$watched}}</td>
           <td>{{$watchlist}}</td>
-          <td>{{$Favourite}}</td>          
+          <td>{{$Favourite}}</td>   
+          <td>{{$FB}}</td>                    
         </tr>
         @endforeach
 
