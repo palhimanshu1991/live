@@ -28,6 +28,11 @@ Route::get('top', 'HomeController@top');
 Route::get('admin', 'AdminController@admin');
 Route::get('admin/reviews', 'AdminController@reviews');
 Route::get('admin/review/delete/{id}', 'AdminController@reviewsDelete');
+Route::get('randoms', 'AdminController@randoms');
+Route::get('random/{id}', 'AdminController@random');
+
+
+Route::get('discover', 'MoviesController@discover');
 
 Route::get('suggestions', 'MoviesController@suggest');
 Route::post('suggestions', 'MoviesController@suggestions');
@@ -187,8 +192,6 @@ Route::get('myscore', function (){
 				->avg('fl_rating');
 });
 
-Route::get('randoms', 'UsersController@randoms');
-Route::get('random/{id}', 'UsersController@random');
 
 
 Route::get('feed/global', 'HomeController@globalFeed');

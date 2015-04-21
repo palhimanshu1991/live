@@ -19,11 +19,13 @@
           <th>Name</th>
           <th>Email</th>
           <th>FB</th>
-          <th>Reviews</th>
-          <th>Watched</th>
-          <th>Watchlist</th>
+          <th>Revs</th>
+          <th>Wathd</th>
+          <th>Walist</th>
           <th>Favs</th>  
-          <th>Friends</th>          
+          <th>FB</th> 
+          <th>Fol</th> 
+          <th><i class="glyphicon glyphicon-user"></i></th>         
         </tr>
       </thead>
       <tbody>
@@ -33,8 +35,9 @@
             $reviews    =  DB::table('film_review')->where('fr_usr_id',$user->id)->count();
             $watched    =  DB::table('user_watched')->where('watched_usr_id',$user->id)->count();
             $watchlist  =  DB::table('user_watchlist')->where('uw_usr_id',$user->id)->count();
-            $Favourite   =  DB::table('user_fav')->where('fav_usr_id',$user->id)->count();
-            $FB   =  DB::table('user_facebook')->where('ufb_usr_id',$user->id)->count();
+            $favourite  =  DB::table('user_fav')->where('fav_usr_id',$user->id)->count();
+            $FB         =  DB::table('user_facebook')->where('ufb_usr_id',$user->id)->count();
+            $followers  =  DB::table('user_friends')->where('friend_user_id',$user->id)->count();
 
         ?>
         <tr>
@@ -45,8 +48,10 @@
           <td>{{$reviews}}</td>
           <td>{{$watched}}</td>
           <td>{{$watchlist}}</td>
-          <td>{{$Favourite}}</td>   
-          <td>{{$FB}}</td>                    
+          <td>{{$favourite}}</td>   
+          <td>{{$FB}}</td> 
+          <td>{{$followers}}</td>
+          <td><a rel="tooltip" data-placement="bottom" title="" data-original-title="Give one new follower to this user" href="{{Config::get('url.home')}}random/{{$user->id}}"> <i class="glyphicon glyphicon-plus"></i></a></td>                              
         </tr>
         @endforeach
 
