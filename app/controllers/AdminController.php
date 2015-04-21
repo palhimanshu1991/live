@@ -25,6 +25,30 @@ class AdminController extends BaseController {
     
     }
 
+    // retunrs all search results
+    public function search() {
+
+        $query = Input::get("query");
+
+        if (Auth::user()->usr_level == 2) {
+            // gets the user details fro username
+            $users = DB::table('users')
+                    ->orderBy('id','desc')
+                    ->where('usr_fname', 'LIKE', '%' . $query . '%')
+                    ->orWhere('usr_lname', 'LIKE', '%' . $query . '%')
+                    ->orWhere('usr_email', 'LIKE', $query)
+                    ->paginate(50);
+
+            $userCount = DB::table('users')->count();
+            $reviewCount = DB::table('film_review')->count();
+
+            $this->layout->content = View::make('admin.index', compact('users','userCount','reviewCount'));
+        } else {
+            return Redirect::to(Config::get('url.home'));
+        }        
+    
+    }    
+
     // retunrs all latest reviews
     public function reviews() {
 

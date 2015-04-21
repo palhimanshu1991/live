@@ -4,9 +4,20 @@
 
 @section('container')
 
-<div class="container wrapper">    
-<h1>Users: <b>{{$userCount}}</b></h1>
-<h1>Reviews: <b>{{$reviewCount}}</b></h1>
+<div class="container wrapper ptop2">   
+<div class="row">
+  <div class="col-md-3">
+    <h1>Users: <b>{{$userCount}}</b></h1>    
+  </div>
+  <div class="col-md-3">
+    <h1>Reviews: <b>{{$reviewCount}}</b></h1>    
+  </div>
+  <div class="col-md-3">
+  {{ Form::open(array('url' => 'admin/search', 'method' => 'get')) }}
+    {{Form::text('query', '', array('class' => 'form-control','placeholder'=>'Search a user'))}}
+  {{ Form::close() }}
+  </div>
+</div> 
 
 <div class="bs-example" data-example-id="striped-table">
         <div class="search-pagination-top bb" style="margin-top:10px;">

@@ -25,11 +25,13 @@ Route::post('upload', function (){
 Route::get('getting-started', 'HomeController@Starting');
 Route::get('top', 'HomeController@top');
 
-Route::get('admin', 'AdminController@admin');
+
 Route::get('admin/reviews', 'AdminController@reviews');
 Route::get('admin/review/delete/{id}', 'AdminController@reviewsDelete');
 Route::get('randoms', 'AdminController@randoms');
 Route::get('random/{id}', 'AdminController@random');
+Route::get('admin', 'AdminController@admin');
+Route::get('admin/search', 'AdminController@search');
 
 
 Route::get('discover', 'MoviesController@discover');
