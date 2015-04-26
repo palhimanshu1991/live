@@ -371,10 +371,12 @@ class ReviewsController extends BaseController {
             $act->action_date = \time();                // time of the activity
             $act->save();                               // saves activity
 
+            /*
             if (Auth::user()->fb_access_token) {
                 $fb = new FacebookController();
                 $execute = $fb->postFbRating($film, $value, Auth::user()->fb_uid, Auth::user()->fb_access_token);
             }
+            */
         }
     }
 
