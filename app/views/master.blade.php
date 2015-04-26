@@ -275,7 +275,7 @@
                             </div>
                         </div>
 
-                        <input class="btn btn-primary btn-lg btn-block" id="review_submit" type="submit" value="Login">
+                        <input class="btn btn-primary btn-lg btn-block" type="submit" value="Login">
                         </form> 
                 </div>
             </div><!-- /.modal-content -->
@@ -362,7 +362,7 @@
 
         <script type="text/javascript" src="{{Config::get('url.home')}}public/bootstrap/js/bootstrap.js"></script>
         <script type="text/javascript" src="{{Config::get('url.home')}}public/bootstrap/js/main.js"></script>
-        <script type="text/javascript" src="{{Config::get('url.web')}}public/berdict/js/jquery.lazyload.js"></script>
+        <script type="text/javascript" src="{{Config::get('url.home')}}public/berdict/js/jquery.lazyload.js"></script>
 
         <script src="{{Config::get('url.home')}}public/rate/jquery.rateit.js"></script>
         <script src="{{Config::get('url.home')}}public/bootstrap/js/bootstrap-dialog.min.js"></script>
