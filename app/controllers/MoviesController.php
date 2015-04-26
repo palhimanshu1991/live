@@ -14,6 +14,19 @@ class MoviesController extends BaseController {
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function discover() {
+
+        $genre      =   DB::table('film_category')->get();
+
+
+        $this->layout->content = View::make('movies.discover',compact('genre'));
+    }    
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return Response
@@ -264,8 +277,7 @@ class MoviesController extends BaseController {
                     ->orWhere('fl_stars', 'LIKE', $second)
                     ->orWhere('fl_stars', 'LIKE', $third)
                     ->where('fl_rating', '>', 6)
-					->remember(10)
-                    ->take(4)
+                    ->take(6)
                     ->orderBy(DB::raw('RAND()'))
                     ->remember(10)
                     ->get();

@@ -1,3 +1,56 @@
+$(".movie-rating-bar a").mouseover(function() {
+    var rating = $(this).attr('data-rating');
+    var parent = $(this).parent();
+    
+    $('.your-review-rating').html(rating);
+
+    parent.find('.level-0').removeClass('active');
+    for (var i = 1; i <= 10; i++) {
+        if(i<=rating){
+            parent.find('.level-'+i).addClass('active');
+        }
+    }
+});
+
+$(".movie-rating-bar a").mouseout(function() {
+    $(this).removeClass('active');
+});
+
+$(".movie-rating-bar").mouseout(function() {
+    var rating = $(this).attr('data-original-rating');
+
+    if(rating==='0'){
+        $('.your-review-rating').html('-');
+    } else {
+        $('.your-review-rating').html(rating);
+    }
+
+    $(this).find('.level-0').removeClass('active');
+    for (var i = 1; i <= 10; i++) {
+        if(i<=rating){
+            $(this).find('.level-'+i).addClass('active');
+        }
+    }    
+});
+
+$(".movie-rating-bar a").click(function(){
+    var value = $(this).attr('data-rating');
+    var film = $(this).attr('film-id');
+    $('.movie-rating-bar').attr('data-original-rating',value);
+
+    $.ajax({
+        url: HOST + "review/rate", //your server side script
+        data: {film: film, value: value}, //our data
+        type: 'POST',
+        success: function(data) {
+            //$('#response').append('<li>' + data + '</li>');
+        },
+        error: function(data) {
+            //$('#response').append('<li style="color:red">' + msg + '</li>');
+            alert('error');
+        }
+    });
+});
 
 
 $(".movie-review-textarea").keyup(function() {
@@ -9,10 +62,14 @@ $(".movie-review-textarea").keyup(function() {
     }
 });
 
+/*
 $(".review-submit").click(function() {
 
-    var review = $(this).parent().parent().find('.movie-review-textarea').val();
+    var review = $('.movie-review-textarea').val();
     var review_len = review.length;
+
+    alert(review)
+
     var film = $(this).attr("movie-id");
     var user = USER;
     var vote = $("#rateit-range-2").attr("aria-valuenow");  
@@ -57,6 +114,7 @@ $(".review-submit").click(function() {
     return false;
 });
 
+*/
 
 $(".activity-comment-submit").click(function() {
     var comment = $(this).parent().find(".js_activity_comment").val();
@@ -482,6 +540,10 @@ $("#ajax_add_watch").click(function() {
         dataType: 'json',
         cache: false,
         success: function(data) {
+            
+        },
+        error: function(data) {
+
         }
     });
     return false;
@@ -629,8 +691,12 @@ $("#review_submit").click(function()
     var review_len = review.length;
     var film = $("#review-form").attr("data-id");
     var user = $("#review-form").attr("data-res-id");
-    var vote = $("#rateit-range-2").attr("aria-valuenow");	
-	if($('#fbshare').is(':checked')) {
+
+    var vote = $(".movie-rating-bar").attr("data-original-rating");	
+	
+    console.log(vote);
+
+    if($('#fbshare').is(':checked')) {
 		var fbshare = '1';
 	} else {
 		var fbshare = '0';	
@@ -639,8 +705,8 @@ $("#review_submit").click(function()
     if (vote == '0') {
         $("#error").html('Please Rate the Movie.');
         $("#error").slideDown(500);
-    } else if (review_len < 50) {
-        $("#error").html('The Review should be atleast 50 characters long.');
+    } else if (review_len < 10) {
+        $("#error").html('Please write a few more words.');
         $("#error").slideDown(500);
     } else {
         $("#update").val('');
@@ -663,6 +729,9 @@ $("#review_submit").click(function()
             }
         });
     }
+    setTimeout(function() {
+        $("#error").slideUp(500);
+    }, 2000);    
     return false;
 });
 

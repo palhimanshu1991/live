@@ -96,7 +96,9 @@
 
                 @if ($action->type_id=="2")
             <?php $film       =  DB::table('film')->where('fl_id', $action->object_id)->join('film_review', 'film_review.fr_fl_id', '=', 'film.fl_id')->where('film_review.fr_usr_id', $user->id)->first(); ?>
+            @if(Auth::check())
             <?php $like       =  DB::table('review_likes')->where('review_id', $film->fr_id)->where('user_id', Auth::user()->id)->first(); ?>
+            @endif
             <?php $likeCount  =  DB::table('review_likes')->where('review_id', $film->fr_id)->count(); ?>
             <?php                DB::table('film_review')->where('fr_id',$film->fr_id)->increment('fr_views'); ?>
             <?php $replies    =  DB::table('review_comments')->where('rc_review_id', $film->fr_id)->join('users','users.id','=','review_comments.rc_user_id')->get(); ?>                                   

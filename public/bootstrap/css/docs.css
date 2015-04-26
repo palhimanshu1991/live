@@ -205,17 +205,14 @@ body {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    text-shadow: rgba(0,0,0,0.05) 0 1px 0;
     position: relative;
-    padding: 14px 20px 13px 20px;
     font-size: 15px;
     line-height: 1;
     border: 0;
-    border-bottom: 2px solid rgba(0,0,0,0.15) !important;
     text-transform: uppercase;
     letter-spacing: .05em;
-    background: #FE4E5B !important;
     color: #fff !important;
+    background: #333;
     outline:none;
     font-family: 'Open Sans';
 }
@@ -237,37 +234,35 @@ body {
 }
 
 .btn-main {
-    -webkit-border-radius: 1px;
-    -moz-border-radius: 1px;
-    -ms-border-radius: 1px;
-    -o-border-radius: 1px;
-    border-radius: 1px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    text-shadow: rgba(0,0,0,0.05) 0 1px 0;
     position: relative;
-    padding: 12px 18px;
+    padding: 15px 25px;
     font-size: 14px;
     line-height: 1;
-    border: 0;
-    border-bottom: 2px solid rgba(0,0,0,0.15) !important;
     text-transform: uppercase;
-    background: #FE4E5B !important;
+    background: #333;
     color: #fff !important;
     outline:none;
-    font-family: 'Open Sans';
+    font-weight: 600;
+    border: 1px solid #333;
 }
 .btn-main:hover {
-    background: #FF4C4C !important;
     outline:none;
+    background: #555;
 }
 
 .form-control {
     display: block;
     width: 100%;
     height: 45px;
-    padding: 6px 12px;
+    padding: 15px 15px;
     font-size: 14px;
     font-family: 'Open Sans';
     line-height: 1.428571429;
@@ -1579,14 +1574,17 @@ rating span.spacer {
     display: none;
 }
 .rating-main{
-    background: #FE4E5B;
-    padding: 10px 11px;
-    font-size: 20px;
+    background: green;
+    font-size: 28px;
     color: #fff;
     font-weight: 600;
-    margin-bottom: 12px;
-    min-width: 48px;
+    padding: 10px 12px 11px;
     text-align: center;
+    letter-spacing: 0.04em;
+    position: absolute;
+    right: 15px;
+    border-radius: 3px;
+    width: 65px;
 }
 .review-container-subhead {
     line-height: 22px;
@@ -1839,13 +1837,18 @@ a div {
 }
 
 .follow {
-    padding: 10px 20px 10px 20px;
-    width: 135px;
+    padding: 14px 20px 14px 20px;
+    width: 150px;
+    border-radius: 2px;
+    text-shadow: none;
+    border: 1px solid #333;
+    font-weight: 600;
 }
 .following {
-    width: 135px;
     background: #0CB640 !important;
-    padding: 10px 20px 10px 20px;
+    padding: 14px 20px 14px 20px;   
+    width: 150px;   border-radius: 30px;   text-shadow: none;   
+    border: 1px solid green;   font-weight: 600;
 }
 
 /*
@@ -2178,7 +2181,7 @@ span.comment-open {
   border: 1px solid green;
   border-radius: 2px;
   color: #fff;
-  background: green;
+  background: #0CB640 !important;
   width: 67px !important;
   text-align: center;
   letter-spacing: 0.045em;
@@ -2213,4 +2216,78 @@ border-bottom: 1px solid #dbdbdb;
 border-right: 1px solid #dbdbdb;
 padding: 20px 40px;
 margin-top: 10%;
+}
+.suggestion-cover {
+    display: inline-grid;
+    height: 195px;
+    overflow: hidden;
+}
+.movie-buttons {
+  padding: 10px 20px;
+  border: 1px solid green;
+  border-radius: 2px;
+  color: green;
+  min-width: 50px !important;
+  text-align: center;
+  letter-spacing: 0.045em;
+  margin-left: 15px;
+  text-transform: uppercase;
+  display: block;
+  float: left;
+  cursor: pointer;
+}
+.movie-buttons-active {
+  padding: 10px 15px;
+  border: 1px solid green;
+  border-radius: 2px;
+  background: #0CB640 !important;
+  color: #fff;
+  min-width: 50px !important;
+  text-align: center;
+  letter-spacing: 0.045em;
+  margin-left: 15px;
+  text-transform: uppercase;
+  display: block;
+  float: left;
+  cursor: pointer;
+  font-weight: 600;
+}
+.movie-rating-bar a {
+  margin-right: 2px;
+  background: #bbb;
+  text-indent: -9999px;
+  width: 23px;
+  height: 22px;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  display: block;
+  float: left;
+  text-decoration: none;
+}
+.movie-rating-bar a.active {
+  background: green;
+}
+.your-review-container {
+    float: right;
+    margin-left: 20px;
+    line-height: 1.2;
+    font-size: 13px;
+    width: 30px;
+}
+.your-review-rating{
+    font-size:18px;
+}
+.response-message {
+    background: lightgreen;
+    position: fixed;
+    text-align: center;
+    top: 60px;
+    padding: 15px;
+    display: block;
+    font-size: 16px;
+    text-transform: uppercase;
+    width: 75%;
+    z-index: 10000;
+    opacity: 0.9;
 }
