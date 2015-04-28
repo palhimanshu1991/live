@@ -1,14 +1,16 @@
 <?php
-$iphone = strpos($_SERVER['HTTP_USER_AGENT'],"iPhone");
-$android = strpos($_SERVER['HTTP_USER_AGENT'],"Android");
-$palmpre = strpos($_SERVER['HTTP_USER_AGENT'],"webOS");
-$berry = strpos($_SERVER['HTTP_USER_AGENT'],"BlackBerry");
-$ipod = strpos($_SERVER['HTTP_USER_AGENT'],"iPod");
+//$iphone = strpos($_SERVER['HTTP_USER_AGENT'],"iPhone");
+//$android = strpos($_SERVER['HTTP_USER_AGENT'],"Android");
+//$palmpre = strpos($_SERVER['HTTP_USER_AGENT'],"webOS");
+//$berry = strpos($_SERVER['HTTP_USER_AGENT'],"BlackBerry");
+//$ipod = strpos($_SERVER['HTTP_USER_AGENT'],"iPod");
 
+/*
 if ($iphone || $android || $palmpre || $ipod || $berry == true) 
 { 
 header('Location: http://m.berdict.com/');
 }
+*/
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
