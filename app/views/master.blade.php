@@ -11,7 +11,7 @@
         <link rel="stylesheet" type="text/css" href="{{Config::get('url.home')}}public/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="{{Config::get('url.home')}}public/bootstrap/css/docs.css">
         <link rel="stylesheet" type="text/css" href="{{ Config::get('url.home')}}public/rate/rateit.css">
-		<link rel="stylesheet" type="text/css" href="{{Config::get('url.home')}}public/bootstrap/css/ionicons.css">
+		<link rel="stylesheet" type="text/css" href="{{Config::get('url.home')}}public/bootstrap/css/ionicons.min.css">
         <link href='http://fonts.googleapis.com/css?family=Oxygen:700,400,300' rel='stylesheet' type='text/css'>
 
         <style>
