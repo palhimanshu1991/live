@@ -33,7 +33,7 @@
           <th scope="row"><a target="_blank" href="{{Config::get('url.home')}}{{$user->username}}">{{$user->usr_fname}}</a></th>
           <td>
             {{$review->fr_vote}} - {{$review->fr_review}} <br/>
-            <a href="{{Config::get('url.home')}}admin/review/like/{{$review->fr_id}}"> <i class="ion-heart"></i> Give One Like</a> - 
+            <a href="{{Config::get('url.home')}}admin/review/like/{{$review->fr_id}}"> <i class="ion-heart"></i> Give Like</a> - 
             <a href="{{Config::get('url.home')}}admin/review/views/{{$review->fr_id}}"> <i class="ion-stats-bars"></i> Boost Views</a> -
             <a href="{{Config::get('url.home')}}admin/review/edit/{{$review->fr_id}}"> <i class="ion-edit"></i> Edit Review</a> 
           </td>

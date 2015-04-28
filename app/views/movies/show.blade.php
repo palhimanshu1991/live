@@ -346,7 +346,7 @@
 	                     <span style="color: rgba(0,0,0,0.3);font-size: 13px;line-height: 1.5;">Wrote a review - </span><span style="color: rgba(0,0,0,0.3);font-size: 13px;line-height: 1.5;"> </span>
 	                  </div>
 	               </div>
-	               <div class="res-review-rating col-md-3 col-xs-3 pad0" style="width:80px:">
+	               <div class="res-review-rating col-md-3 col-xs-3 pad0" style="">
                    	<img class="img-responsive" src="{{Config::get('url.home')}}public/rate_{{$film->fr_vote}}.jpg" alt="" style="width:36px;display: inline;float:right;">
                     <span style="background:#dbdbdb;;width:36px;height:36px;display: inline;float:right;font-size:20px;font-weight:600;padding:4px 0px;color:#333;text-align:center;">
 	                 {{$film->fr_vote}}                                      
