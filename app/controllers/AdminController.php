@@ -68,6 +68,64 @@ class AdminController extends BaseController {
     
     }    
 
+    // Boost views of a reviews 
+    public function reviewsViews($review){
+
+        if (Auth::user()->usr_level == 2) {
+
+            DB::table('film_review')
+            ->where('fr_id',$review)
+            ->increment('fr_views',rand(50,100)); 
+      
+            return Redirect::to(Config::get('url.home')."admin/reviews");
+
+        } else {
+            return Redirect::to(Config::get('url.home'));
+        }           
+    }
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function reviewEdit($id) {
+
+        $review = Review::find($id);
+
+         if (Auth::user()->usr_level == 2) {
+                $this->layout->content = View::make('reviews.edit', compact('review'));
+        } else {
+            return Redirect::to(Config::get('url.home'));
+        }
+    }    
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function reviewSave($id) {
+
+        if (Auth::user()->usr_level == 2) {        
+
+            $review = Input::get('review_text');
+
+            DB::table('film_review')
+                    ->where('fr_id', $id)
+                    ->update(array(
+                        'fr_review' => $review,
+                        'fr_date' => \time()
+            ));
+
+        }
+
+        return Redirect::to(Config::get('url.home')."admin/reviews");
+    }
+
     // Deletes a review
     public function reviewsDelete($review) {
 
@@ -111,6 +169,29 @@ class AdminController extends BaseController {
     
     }  
 
+    // Gives 1 Random Like
+    public function reviewsLike($review) {
+
+        if (Auth::user()->usr_level == 2) {
+
+
+        $rev = DB::table('film_review')
+                ->where('fr_id', $review)
+                ->first();
+
+            if ($rev) {
+
+                $this->like($review);
+
+            }            
+
+            return Redirect::to(Config::get('url.home')."admin/reviews");
+
+        } else {
+            return Redirect::to(Config::get('url.home'));
+        }        
+    
+    }  
 
     
    /**
@@ -317,5 +398,93 @@ class AdminController extends BaseController {
     public function getMovieCount($id) {
         return DB::table('user_watched')->where('watched_usr_id', $id)->count();
     }      
+
+    /**
+     * adding a like to the review.
+     */
+    public function like($review) {
+
+        $user   =   rand(1,130); 
+        $check  =   $this->likeCheck($review,$user);
+
+        if (!$check) {
+            if (!$review == "") {
+
+                // inserting the review like
+                DB::table('review_likes')->insert(
+                        array(
+                            'review_id' => $review,
+                            'user_id' => $user
+                        )
+                );
+                $review = DB::table('film_review')->where('fr_id', $review)->first();
+                // creating a notification
+                $noti = new Notification;               // notification instance
+                $noti->user_id = $review->fr_usr_id;      // the user who will get this notification
+                $noti->subject_type = 'user';           // user
+                $noti->subject_id = $user;                // the user who liked the review
+                $noti->object_type = 'review';          // object is review 
+                $noti->object_id = $review->fr_id;             // id of the review in picture
+                $noti->type = 'liked';                  // liked - notification type
+                $noti->read = '0';                      // default '0' as it is unread
+                $noti->time = time();                   // default '0' as it is unread
+                $noti->save();                          // saves notification
+
+                $mail = $this->newLikeMail($review->fr_usr_id, $review->fr_fl_id, $review, $user);
+            }
+        }
+    }
+
+    /**
+     * like check to the review.
+     */
+    public function likeCheck($review,$user) {
+        return DB::table('review_likes')
+                        ->where('review_id', $review)
+                        ->where('user_id', $user)
+                        ->first();
+    }    
+
+
+    //
+    // Mail for a new like on the review 
+    //
+    public function newLikeMail($subject, $film, $review, $random) {
+
+        $user = User::where('id', $subject)->first();
+        $Ruser = User::where('id', $random)->first();       
+        $movie = Movie::where('fl_id', $film)->first();
+
+        if ($movie->fl_image) {
+            $filmImage = 'http://www.berdict.com/public/uploads/movie/' . $movie->fl_year . '/' . $movie->fl_image;
+        } else {
+            $filmImage = 'http://www.berdict.com/public/berdict/img/default_poster.jpg';
+        }
+        $filmUrl = 'http://www.berdict.com/movie/' . $movie->fl_id . '/' . Common::cleanUrl($movie->fl_name);
+
+        $subjectEmail = $user->usr_email;
+        $subjectName = $user->usr_fname . ' ' . $user->usr_lname;
+        $emailSubject = '' . $user->usr_fname . '! ' . $Ruser->usr_fname . ' ' . $Ruser->usr_lname . ' agreed with your review for ' . $movie->fl_name;
+
+        $data = array(
+            'subjectName' => $user->usr_fname,
+            'filmName' => $movie->fl_name,
+            'filmYear' => $movie->fl_year,
+            'filmUrl' => $filmUrl,
+            'filmImage' => $filmImage,
+            'filmReview' => $review->fr_review,
+            'reviewId' => $review->fr_id,
+            'objectId' => $Ruser->id,
+            'objectName' => $Ruser->usr_fname . ' ' . $Ruser->usr_lname,
+            'objectUsername' => $Ruser->username,
+            'filmName' => $movie->fl_name
+        );
+
+        Mail::send('emails.agree', $data, function($message) use ($subjectEmail, $subjectName, $emailSubject) {
+            $message->to($subjectEmail, $subjectName);
+            $message->subject($emailSubject);
+            $message->from('no-reply@berdict.com', 'Berdict');
+        });
+    }
 
 }

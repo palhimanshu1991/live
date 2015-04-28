@@ -28,6 +28,12 @@ Route::get('top', 'HomeController@top');
 
 Route::get('admin/reviews', 'AdminController@reviews');
 Route::get('admin/review/delete/{id}', 'AdminController@reviewsDelete');
+Route::get('admin/review/like/{id}', 'AdminController@reviewsLike');
+Route::get('admin/review/views/{id}', 'AdminController@reviewsViews');
+Route::get('admin/review/edit/{id}', 'AdminController@reviewEdit');
+Route::post('admin/review/edit/{id}', 'AdminController@reviewSave');
+
+
 Route::get('randoms', 'AdminController@randoms');
 Route::get('random/{id}', 'AdminController@random');
 Route::get('admin', 'AdminController@admin');
