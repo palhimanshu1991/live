@@ -334,17 +334,26 @@
             <?php $replies    =  DB::table('review_comments')->where('rc_review_id', $myReview->fr_id)->join('users','users.id','=','review_comments.rc_user_id')->get(); ?>                                   
             <?php $replyCount =  DB::table('review_comments')->where('rc_review_id', $myReview->fr_id)->count(); ?>                                   
             <div class="row-fluid col-md-12" style="margin-bottom:30px;" id="data-review-4477">
-               <div class="res-review-user col-md-12 pad0" style="height: 50px;">
-                  <a class="left" href="{{Config::get('url.home')}}{{$myReview->username}}">
-                    <img class="lazy img-responsive " src="{{Config::get('url.home')}}public/berdict/img/avatar_50.png" data-original="{{Config::get('url.web')}}public/user_uploads/1000/{{$myReview->id}}/{{$myReview->usr_image}}" alt="" style="height:36px;width: 36px; display: inline;border-radius:50px;">
-                  </a>
-                  <div class="feed-rate-user-details">
-                     <a href="{{Config::get('url.home')}}{{$myReview->username}}"><span class="helper">{{$myReview->usr_fname.' '.$myReview->usr_lname}} </span></a> 
-                  </div>
-                  <div class="feed-rate-user-details">
-                     <span style="color: rgba(0,0,0,0.3);font-size: 13px;line-height: 1.5;">Wrote a review - </span><span style="color: rgba(0,0,0,0.3);font-size: 13px;line-height: 1.5;"> </span>
-                  </div>
+               <div class="row" style="margin:0px;">
+	               <div class="res-review-user col-md-9 col-xs-9 pad0" style="height: 50px;">
+	                  <a class="left" href="{{Config::get('url.home')}}{{$myReview->username}}">
+	                    <img class="lazy img-responsive " src="{{Config::get('url.home')}}public/berdict/img/avatar_50.png" data-original="{{Config::get('url.web')}}public/user_uploads/1000/{{$myReview->id}}/{{$myReview->usr_image}}" alt="" style="height:36px;width: 36px; display: inline;border-radius:50px;">
+	                  </a>
+	                  <div class="feed-rate-user-details">
+	                     <a href="{{Config::get('url.home')}}{{$myReview->username}}"><span class="helper">{{$myReview->usr_fname.' '.$myReview->usr_lname}} </span></a> 
+	                  </div>
+	                  <div class="feed-rate-user-details">
+	                     <span style="color: rgba(0,0,0,0.3);font-size: 13px;line-height: 1.5;">Wrote a review - </span><span style="color: rgba(0,0,0,0.3);font-size: 13px;line-height: 1.5;"> </span>
+	                  </div>
+	               </div>
+	               <div class="res-review-rating col-md-3 col-xs-3 pad0" style="width:80px:">
+                   	<img class="img-responsive" src="{{Config::get('url.home')}}public/rate_{{$film->fr_vote}}.jpg" alt="" style="width:36px;display: inline;float:right;">
+                    <span style="background:#dbdbdb;;width:36px;height:36px;display: inline;float:right;font-size:20px;font-weight:600;padding:4px 0px;color:#333;text-align:center;">
+	                 {{$film->fr_vote}}                                      
+	                 </span>
+	               </div> 
                </div>
+
                <div class="res-review-header col-md-12 pad0" style="height:30px;">
                   <div class="res-review-user col-md-12 col-xs-9 pad0" style="">
                      <div data-review-id="4477" class="res-review-body review-profile feed-review-body" style="font-weight: 800;font-size: 22px;margin-bottom:0;">
@@ -353,12 +362,6 @@
                      <div class="hidden" style="">
                         <span>{{$film->fl_year}}</span> 
                      </div>
-                  </div>
-                  <div class="res-review-rating col-md-3 col-xs-3 pad0 hidden" style="width:80px:">
-                     <img class="img-responsive" src="{{Config::get('url.home')}}public/rate_{{$film->fr_vote}}.jpg" alt="" style="width:42px;display: inline;float:right;">
-                     <span style="background:#dbdbdb;;width:42px;height:42px;display: inline;float:right;font-size:24px;font-weight:600;padding:5px 0px;color:#666;text-align:center;">
-                     {{$film->fr_vote}}                                      
-                     </span>
                   </div>
                </div>
                <div class="res-review-header col-md-12 pad0" style="">
@@ -429,16 +432,24 @@
             <?php $replies    =  DB::table('review_comments')->where('rc_review_id', $film->fr_id)->join('users','users.id','=','review_comments.rc_user_id')->get(); ?>                                   
             <?php $replyCount =  DB::table('review_comments')->where('rc_review_id', $film->fr_id)->count(); ?>                                   
             <div class="row-fluid col-md-12" style="margin-bottom:30px;" id="data-review-4477">
-               <div class="res-review-user col-md-12 pad0" style="height: 50px;">
-                  <a class="left" href="{{Config::get('url.home')}}{{$review->username}}">
-                    <img class="lazy img-responsive " src="{{Config::get('url.home')}}public/berdict/img/avatar_50.png" data-original="{{Config::get('url.web')}}public/user_uploads/1000/{{$review->id}}/{{$review->usr_image}}" alt="" style="height:36px;width: 36px; display: inline;border-radius:50px;">
-                  </a>
-                  <div class="feed-rate-user-details">
-                     <a href="{{Config::get('url.home')}}{{$review->username}}"><span class="helper">{{$review->usr_fname.' '.$review->usr_lname}} </span></a> 
-                  </div>
-                  <div class="feed-rate-user-details">
-                     <span style="color: rgba(0,0,0,0.3);font-size: 13px;line-height: 1.5;">Wrote a review - </span><span style="color: rgba(0,0,0,0.3);font-size: 13px;line-height: 1.5;"> </span>
-                  </div>
+               <div class="row" style="margin:0px;">
+	               <div class="res-review-user col-md-9 col-xs-9 pad0" style="height: 50px;">
+	                  <a class="left" href="{{Config::get('url.home')}}{{$review->username}}">
+	                    <img class="lazy img-responsive " src="{{Config::get('url.home')}}public/berdict/img/avatar_50.png" data-original="{{Config::get('url.web')}}public/user_uploads/1000/{{$review->id}}/{{$review->usr_image}}" alt="" style="height:36px;width: 36px; display: inline;border-radius:50px;">
+	                  </a>
+	                  <div class="feed-rate-user-details">
+	                     <a href="{{Config::get('url.home')}}{{$review->username}}"><span class="helper">{{$review->usr_fname.' '.$review->usr_lname}} </span></a> 
+	                  </div>
+	                  <div class="feed-rate-user-details">
+	                     <span style="color: rgba(0,0,0,0.3);font-size: 13px;line-height: 1.5;">Wrote a review - </span><span style="color: rgba(0,0,0,0.3);font-size: 13px;line-height: 1.5;"> </span>
+	                  </div>
+	               </div>
+                  	<div class="res-review-rating col-md-3 col-xs-3 pad0" style="">
+                    	<img class="img-responsive" src="{{Config::get('url.home')}}public/rate_{{$film->fr_vote}}.jpg" alt="" style="width:36px;display: inline;float:right;">
+                    	<span style="background:#dbdbdb;;width:36px;height:36px;display: inline;float:right;font-size:20px;font-weight:600;padding:4px 0px;color:#333;text-align:center;">
+                    	{{$film->fr_vote}}                                      
+                    	</span>
+                  	</div>               	
                </div>
                <div class="res-review-header col-md-12 pad0" style="height:30px;">
                   <div class="res-review-user col-md-12 col-xs-9 pad0" style="">
@@ -448,12 +459,6 @@
                      <div class="hidden" style="">
                         <span>{{$film->fl_year}}</span> 
                      </div>
-                  </div>
-                  <div class="res-review-rating col-md-3 col-xs-3 pad0 hidden" style="width:80px:">
-                     <img class="img-responsive" src="{{Config::get('url.home')}}public/rate_{{$film->fr_vote}}.jpg" alt="" style="width:42px;display: inline;float:right;">
-                     <span style="background:#dbdbdb;;width:42px;height:42px;display: inline;float:right;font-size:24px;font-weight:600;padding:5px 0px;color:#666;text-align:center;">
-                     {{$film->fr_vote}}                                      
-                     </span>
                   </div>
                </div>
                <div class="res-review-header col-md-12 pad0" style="">
@@ -521,17 +526,25 @@
             <?php $replies    =  DB::table('review_comments')->where('rc_review_id', $film->fr_id)->join('users','users.id','=','review_comments.rc_user_id')->get(); ?>                                   
             <?php $replyCount =  DB::table('review_comments')->where('rc_review_id', $film->fr_id)->count(); ?>                                   
             <div class="row-fluid col-md-12" style="margin-bottom:30px;" id="data-review-4477">
-               <div class="res-review-user col-md-12 pad0" style="height: 50px;">
-                  <a class="left" href="{{Config::get('url.home')}}{{$review->username}}">
-                    <img class="lazy img-responsive " src="{{Config::get('url.home')}}public/berdict/img/avatar_50.png" data-original="{{Config::get('url.web')}}public/user_uploads/1000/{{$review->id}}/{{$review->usr_image}}" alt="" style="height:36px;width: 36px; display: inline;border-radius:50px;">
-                  </a>
-                  <div class="feed-rate-user-details">
-                     <a href="{{Config::get('url.home')}}{{$review->username}}"><span class="helper">{{$review->usr_fname.' '.$review->usr_lname}} </span></a> 
-                  </div>
-                  <div class="feed-rate-user-details">
-                     <span style="color: rgba(0,0,0,0.3);font-size: 13px;line-height: 1.5;">Wrote a review - </span><span style="color: rgba(0,0,0,0.3);font-size: 13px;line-height: 1.5;"> </span>
-                  </div>
-               </div>
+               <div class="row" style="margin:0px;">
+	               <div class="res-review-user col-md-9 pad0" style="height: 50px;">
+	                  <a class="left" href="{{Config::get('url.home')}}{{$review->username}}">
+	                    <img class="lazy img-responsive " src="{{Config::get('url.home')}}public/berdict/img/avatar_50.png" data-original="{{Config::get('url.web')}}public/user_uploads/1000/{{$review->id}}/{{$review->usr_image}}" alt="" style="height:36px;width: 36px; display: inline;border-radius:50px;">
+	                  </a>
+	                  <div class="feed-rate-user-details">
+	                     <a href="{{Config::get('url.home')}}{{$review->username}}"><span class="helper">{{$review->usr_fname.' '.$review->usr_lname}} </span></a> 
+	                  </div>
+	                  <div class="feed-rate-user-details">
+	                     <span style="color: rgba(0,0,0,0.3);font-size: 13px;line-height: 1.5;">Wrote a review - </span><span style="color: rgba(0,0,0,0.3);font-size: 13px;line-height: 1.5;"> </span>
+	                  </div>
+	               </div>
+                  	<div class="res-review-rating col-md-3 col-xs-3 pad0" style="">
+                     	<img class="img-responsive" src="{{Config::get('url.home')}}public/rate_{{$film->fr_vote}}.jpg" alt="" style="width:36px;display: inline;float:right;">
+                     	<span style="background:#dbdbdb;;width:36px;height:36px;display: inline;float:right;font-size:20px;font-weight:600;padding:4px 0px;color:#333;text-align:center;">
+                     	{{$film->fr_vote}}                                      
+                     	</span>
+                  	</div>               	
+               </div>               
                <div class="res-review-header col-md-12 pad0" style="height:30px;">
                   <div class="res-review-user col-md-12 col-xs-9 pad0" style="">
                      <div data-review-id="4477" class="res-review-body review-profile feed-review-body" style="font-weight: 800;font-size: 22px;margin-bottom:0;">
@@ -540,12 +553,6 @@
                      <div class="hidden" style="">
                         <span>{{$film->fl_year}}</span> 
                      </div>
-                  </div>
-                  <div class="res-review-rating col-md-3 col-xs-3 pad0 hidden" style="width:80px:">
-                     <img class="img-responsive" src="{{Config::get('url.home')}}public/rate_{{$film->fr_vote}}.jpg" alt="" style="width:42px;display: inline;float:right;">
-                     <span style="background:#dbdbdb;;width:42px;height:42px;display: inline;float:right;font-size:24px;font-weight:600;padding:5px 0px;color:#666;text-align:center;">
-                     {{$film->fr_vote}}                                      
-                     </span>
                   </div>
                </div>
                <div class="res-review-header col-md-12 pad0" style="">
