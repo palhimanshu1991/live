@@ -56,6 +56,19 @@
 		                	<div class="movie-buttons" review-id="4477" rel="tooltip" data-placement="top" title="" data-original-title="Write A Review For This Movie" style="margin-left: 0;">Write Review</div>
 		                </a>
 						@if(Auth::check())
+				            @if ($watched==0)
+				            <div class="">
+				                <div data-id="{{$movie->fl_id}}" id="" rel="tooltip" data-placement="top" title="Add To Watched Movies" data-original-title="Add To Favourite" style="" class="movie-buttons add-watched"> <span class="glyphicon glyphicon-ok"></span> </div>
+				                <div data-id="{{$movie->fl_id}}" id="" rel="tooltip" data-placement="top" title="Remove From Watched Movies" data-original-title="Remove From Favourite" style="display: none;" class="movie-buttons-active remove-watched"> <span class="glyphicon glyphicon-ok"></span> </div>
+				            </div>
+				            @elseif ($watched==1)
+				            <div class="">                            
+				                <div data-id="{{$movie->fl_id}}" id="" rel="tooltip" data-placement="top" title="Add To Watched Movies" data-original-title="Add To Favourite" style="display: none;" class="movie-buttons add-watched"> <span class="glyphicon glyphicon-ok"></span> </div>
+				                <div data-id="{{$movie->fl_id}}" id="" rel="tooltip" data-placement="top" title="Remove From Watched Movies" data-original-title="Remove From Favourite" style="" class="movie-buttons-active remove-watched"> <span class="glyphicon glyphicon-ok"></span> </div>
+				            </div>
+				            @endif
+
+
 				            @if ($fav==3)
 				            @elseif ($fav==0)
 				            <div class="">
@@ -390,7 +403,7 @@
                   <span href="{{Config::get('url.home')}}reviews/{{$film->fr_id}}/people" data-toggle="modal" data-target="#people" class="" rel="tooltip" data-placement="left" title="" data-original-title="People who Like"  style="margin-left:15px;float: right;color:#666;font-size: 1.6em;line-height: 0.6;"> {{$likeCount}} <font style="font-size: 13px;font-weight: 400;"> @if($likeCount<2) Like  @else Likes  @endif </font></span>
                   @endif
                   @if($likeCount>2)
-                  <span class="right" rel="tooltip" data-placement="top" title="" data-original-title="Top Review"  style="margin-left:15px;color:#fe2020;"> <span style="" class="glyphicon glyphicon-star"></span></span> 
+                  <span class="right trophy" rel="tooltip" data-placement="top" title="" data-original-title="Top Review"><i class="ion-trophy"></i> </span> 
                   @endif
                   <span rel="tooltip" data-placement="left" title="" data-original-title="People who Like"  style="margin-left:15px;float: right;color:#666;font-size: 1.6em;line-height: 0.6;"> {{$film->fr_views}}  <font style="font-size: 13px;font-weight: 400;"> Views </font></span>
                </div>
@@ -487,7 +500,7 @@
                   <span href="{{Config::get('url.home')}}reviews/{{$film->fr_id}}/people" data-toggle="modal" data-target="#people" class="" rel="tooltip" data-placement="left" title="" data-original-title="People who Like"  style="margin-left:15px;float: right;color:#666;font-size: 1.6em;line-height: 0.6;"> {{$likeCount}} <font style="font-size: 13px;font-weight: 400;"> @if($likeCount<2) Like  @else Likes  @endif </font></span>
                   @endif
                   @if($likeCount>2)
-                  <span class="right" rel="tooltip" data-placement="top" title="" data-original-title="Top Review"  style="margin-left:15px;color:#fe2020;"> <span style="" class="glyphicon glyphicon-star"></span></span> 
+                  <span class="right trophy" rel="tooltip" data-placement="top" title="" data-original-title="Top Review"><i class="ion-trophy"></i> </span> 
                   @endif
                   <span rel="tooltip" data-placement="left" title="" data-original-title="People who Like"  style="margin-left:15px;float: right;color:#666;font-size: 1.6em;line-height: 0.6;"> {{$film->fr_views}}  <font style="font-size: 13px;font-weight: 400;"> Views </font></span>
                </div>
@@ -581,7 +594,7 @@
                   <span href="{{Config::get('url.home')}}reviews/{{$film->fr_id}}/people" data-toggle="modal" data-target="#people" class="" rel="tooltip" data-placement="left" title="" data-original-title="People who Like"  style="margin-left:15px;float: right;color:#666;font-size: 1.6em;line-height: 0.6;"> {{$likeCount}} <font style="font-size: 13px;font-weight: 400;"> @if($likeCount<2) Like  @else Likes  @endif </font></span>
                   @endif
                   @if($likeCount>2)
-                  <span class="right" rel="tooltip" data-placement="top" title="" data-original-title="Top Review"  style="margin-left:15px;color:#fe2020;"> <span style="" class="glyphicon glyphicon-star"></span></span> 
+                  <span class="right trophy" rel="tooltip" data-placement="top" title="" data-original-title="Top Review"><i class="ion-trophy"></i> </span> 
                   @endif
                   <span rel="tooltip" data-placement="left" title="" data-original-title="People who Like"  style="margin-left:15px;float: right;color:#666;font-size: 1.6em;line-height: 0.6;"> {{$film->fr_views}}  <font style="font-size: 13px;font-weight: 400;"> Views </font></span>
                </div>

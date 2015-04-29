@@ -230,6 +230,17 @@ class MoviesController extends BaseController {
             } else {
                 $watch = '0';
             }
+
+            $watchModel = new WatchedController();
+            $watched = $watchModel->watchCheck($id,Auth::user()->id);            
+
+            if ($watched) {
+                $watched = '1';
+            } else {
+                $watched = '0';
+            }
+
+
             $fav = DB::table('user_fav')
                     ->where('fav_fl_id', $id)
                     ->where('fav_usr_id', Auth::user()->id)
@@ -285,7 +296,7 @@ class MoviesController extends BaseController {
             $sugg = array();
         }
 
-        $this->layout->content = View::make('movies.show', compact('myReview', 'frreviews', 'watchCount', 'favCount', 'commonFav', 'critics', 'movie', 'movieRating', 'sugg', 'reviews', 'reviewCount', 'recent', 'watch', 'fav', 'user', 'rate'));
+        $this->layout->content = View::make('movies.show', compact('myReview', 'frreviews', 'watchCount', 'favCount', 'commonFav', 'critics', 'movie', 'movieRating', 'sugg', 'reviews', 'reviewCount', 'recent', 'watch', 'fav', 'user', 'rate','watched'));
     }
 
     /**

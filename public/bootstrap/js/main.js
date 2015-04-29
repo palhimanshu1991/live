@@ -191,6 +191,51 @@ $('#review-form-textarea').on('focusin', function(e){
 });
 
 
+////////////////////////////////////////////// Follow 
+
+
+$(".add-watched").click(function() {
+
+    var movie = $(this).attr("data-id");
+
+    $(this).hide();
+    $(this).parent().find('.remove-watched').show();
+
+    $.ajax({
+        type: "POST",
+        url: HOST + "watched/add",
+        data: {movie: movie},
+        dataType: 'json',
+        cache: false,
+        success: function(html)
+        {
+        }
+    });
+
+    return false;
+});
+
+
+$(".remove-watched").click(function() {
+
+    var movie = $(this).attr("data-id");
+
+    $(this).hide();
+    $(this).parent().find('.add-watched').show();
+
+    $.ajax({
+        type: "POST",
+        url: HOST + "watched/remove",
+        data: {movie: movie},
+        dataType: 'json',
+        cache: false,
+        success: function(html)
+        {
+        }
+    });
+
+    return false;
+});
 
 
 

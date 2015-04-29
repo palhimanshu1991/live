@@ -343,6 +343,10 @@ Route::post('comment/add', 'CommentsController@add')->before('auth');
 Route::post('/watchlist/delete', 'WatchlistController@delete')->before('auth');
 Route::post('/watchlist/add', 'WatchlistController@add')->before('auth');
 
+// Watchlist Button
+Route::post('/watched/remove', 'WatchedController@remove')->before('auth');
+Route::post('/watched/add', 'WatchedController@add')->before('auth');
+
 // Favourite Button
 Route::post('/favourite/delete', 'FavouriteController@delete')->before('auth');
 Route::post('/favourite/add', 'FavouriteController@add')->before('auth');
