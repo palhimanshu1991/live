@@ -370,13 +370,7 @@
 
         <script src="{{ Config::get('url.home')}}public/bootstrap/js/elastic.js"></script>
         <script type="text/javascript">
-            // <![CDATA[
-            //jQuery.noConflict();
-            jQuery(document).ready(function() {
-                jQuery('textarea').elastic();
-                jQuery('textarea').trigger('update');
-            });
-            // ]]>
+
             var fetch = $("#myLatest").attr("data-fetch");
 
             $("#myLatest").one("click", function() {
