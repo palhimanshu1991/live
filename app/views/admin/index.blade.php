@@ -30,6 +30,7 @@
           <th>Name</th>
           <th>Email</th>
           <th>FB</th>
+          <th>Rate</th>
           <th>Revs</th>
           <th>Wathd</th>
           <th>Walist</th>
@@ -42,7 +43,8 @@
       <tbody>
 
         @foreach($users as $user)
-        <?php 
+        <?php
+            $ratings    =  DB::table('rating')->where('rt_usr_id',$user->id)->count(); 
             $reviews    =  DB::table('film_review')->where('fr_usr_id',$user->id)->count();
             $watched    =  DB::table('user_watched')->where('watched_usr_id',$user->id)->count();
             $watchlist  =  DB::table('user_watchlist')->where('uw_usr_id',$user->id)->count();
@@ -56,6 +58,7 @@
           <td><a target="_blank" href="http://www.berdict.com/{{$user->username}}">{{$user->usr_fname.' '.$user->usr_lname}}</a></td>
           <td><a href="mailTo:{{$user->usr_email}}">{{$user->usr_email}}</a></td>
           <td>@if($user->usr_fb_link)<a target="_blank"  href="{{$user->usr_fb_link}}"><i class="glyphicon glyphicon-send"></i></a>@endif</td>
+          <td>{{$ratings}}</td>
           <td>{{$reviews}}</td>
           <td>{{$watched}}</td>
           <td>{{$watchlist}}</td>
